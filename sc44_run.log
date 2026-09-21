@@ -1,0 +1,210 @@
+SilentCipher SC-44 모델 로딩 중...
+ckpt path or config path does not exist! Downloading the model from the Hugging Face Hub...
+Fetching 13 files:   0%|          | 0/13 [00:00<?, ?it/s]Fetching 13 files: 100%|██████████| 13/13 [00:00<00:00, 789.78it/s]
+완료!
+
+메시지: [123, 234, 111, 222, 11] (40비트)
+총 원본 파일 수: 17개
+============================================================
+공격 단계: ['MP3_128kbps', 'MP3_320kbps', 'Resample_44100-16000RT', 'Crop_10pct', 'TSM_1.1x', 'AWGN_30dB', 'Limiter', 'Opus_64kbps', 'AAC_128kbps', 'TelephoneFilter', 'EnCodec_6kbps', 'DAC']
+※ 44.1kHz 전체 트랙을 그대로 처리하므로 Limiter처럼 샘플 단위 루프가 있는
+   공격은 파일당 다소 시간이 걸릴 수 있습니다.
+============================================================
+
+[1/17] 0422_민속악_판소리.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: 0422_민속악_판소리.wav → CUDA out of memory. Tried to allocate 5.97 GiB (GPU 0; 23.56 GiB total capacity; 20.55 GiB already allocated; 2.60 GiB free; 20.62 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[2/17] 0423_민속악_판소리.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: 0423_민속악_판소리.wav → CUDA out of memory. Tried to allocate 5.26 GiB (GPU 0; 23.56 GiB total capacity; 12.87 GiB already allocated; 2.72 GiB free; 20.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[3/17] 0424_민속악_판소리.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: 0424_민속악_판소리.wav → CUDA out of memory. Tried to allocate 4.94 GiB (GPU 0; 23.56 GiB total capacity; 12.12 GiB already allocated; 2.72 GiB free; 20.49 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[4/17] Similar_Dance_00073_Cover_Arrangement_A.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: Similar_Dance_00073_Cover_Arrangement_A.wav → CUDA out of memory. Tried to allocate 2.99 GiB (GPU 0; 23.56 GiB total capacity; 10.49 GiB already allocated; 2.79 GiB free; 20.43 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[5/17] Similar_Dance_00081_Cover_Arrangement_A.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: Similar_Dance_00081_Cover_Arrangement_A.wav → CUDA out of memory. Tried to allocate 3.29 GiB (GPU 0; 23.56 GiB total capacity; 11.47 GiB already allocated; 2.79 GiB free; 20.43 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[6/17] Similar_Dance_00085_Cover_Arrangement_A.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: Similar_Dance_00085_Cover_Arrangement_A.wav → CUDA out of memory. Tried to allocate 3.22 GiB (GPU 0; 23.56 GiB total capacity; 11.26 GiB already allocated; 2.79 GiB free; 20.43 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[7/17] Similar_Dance_00087_Cover_Arrangement_A.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: Similar_Dance_00087_Cover_Arrangement_A.wav → CUDA out of memory. Tried to allocate 3.16 GiB (GPU 0; 23.56 GiB total capacity; 11.04 GiB already allocated; 2.79 GiB free; 20.43 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[8/17] Similar_Trot_00162_Cover_Arrangement_A.wav
+  [CACHE]  캐시된 임베딩 재사용 (183.0초)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 PLV=0.9996 SI-SNR=48.58dB
+  [MP3_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9902 SI-SNR=34.46dB
+  [MP3_320kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9976 SI-SNR=45.61dB
+  [Resample_44100-16000RT] BER=0.0 NC=1.0 DSR=1 PLV=0.9232 SI-SNR=27.14dB
+  [Crop_10pct] BER=0.0 NC=1.0 DSR=1 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=0.0 NC=1.0 DSR=1 PLV=0.9764 SI-SNR=29.94dB
+  [Limiter] BER=0.0 NC=1.0 DSR=1 PLV=0.9996 SI-SNR=48.58dB
+  [Opus_64kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9674 SI-SNR=21.54dB
+  [AAC_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9908 SI-SNR=32.47dB
+  [TelephoneFilter] BER=1.0 NC=-1.0 DSR=0 PLV=0.2306 SI-SNR=-17.09dB
+  [EnCodec_6kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.6066 SI-SNR=8.24dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.3875 SI-SNR=-0.73dB
+
+[9/17] Similar_Trot_00266_Cover_Arrangement_A.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: Similar_Trot_00266_Cover_Arrangement_A.wav → CUDA out of memory. Tried to allocate 3.06 GiB (GPU 0; 23.56 GiB total capacity; 11.01 GiB already allocated; 2.77 GiB free; 20.45 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[10/17] Similar_Trot_00568_Cover_Arrangement_B.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=44100 -> 44.1kHz, 188.5초, encode SDR=48.57dB)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 PLV=0.9998 SI-SNR=48.58dB
+  [MP3_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9886 SI-SNR=30.41dB
+  [MP3_320kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9974 SI-SNR=43.57dB
+  [Resample_44100-16000RT] BER=0.0 NC=1.0 DSR=1 PLV=0.9084 SI-SNR=25.22dB
+  [Crop_10pct] BER=0.0 NC=1.0 DSR=1 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=0.0 NC=1.0 DSR=1 PLV=0.9831 SI-SNR=29.94dB
+  [Limiter] BER=0.0 NC=1.0 DSR=1 PLV=0.9998 SI-SNR=48.58dB
+  [Opus_64kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9513 SI-SNR=18.78dB
+  [AAC_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9881 SI-SNR=26.35dB
+  [TelephoneFilter] BER=1.0 NC=-1.0 DSR=0 PLV=0.2438 SI-SNR=-8.19dB
+  [EnCodec_6kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.4578 SI-SNR=3.79dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.2204 SI-SNR=-4.94dB
+
+[11/17] Similar_Trot_00571_Cover_Arrangement_B.wav
+Using the default SDR of 47 dB
+  [FAIL] 오류: Similar_Trot_00571_Cover_Arrangement_B.wav → CUDA out of memory. Tried to allocate 3.09 GiB (GPU 0; 23.56 GiB total capacity; 11.10 GiB already allocated; 2.77 GiB free; 20.45 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF
+
+[12/17] 일반남여_일반통합06_F_1536505292_35_경상_실내_09408.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=16000 -> 44.1kHz, 6.7초, encode SDR=50.55dB)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.57dB
+  [MP3_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9988 SI-SNR=49.63dB
+  [MP3_320kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.55dB
+  [Resample_44100-16000RT] BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.55dB
+  [Crop_10pct] BER=0.0 NC=1.0 DSR=1 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=1.0 NC=-1.0 DSR=0 PLV=0.99 SI-SNR=29.97dB
+  [Limiter] BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.57dB
+  [Opus_64kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9914 SI-SNR=27.6dB
+  [AAC_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9986 SI-SNR=48.75dB
+  [TelephoneFilter] BER=1.0 NC=-1.0 DSR=0 PLV=0.4766 SI-SNR=-5.8dB
+  [EnCodec_6kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.6314 SI-SNR=8.72dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.4338 SI-SNR=-12.56dB
+
+[13/17] 일반남여_일반통합06_F_1536505292_35_경상_실내_09410.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=16000 -> 44.1kHz, 9.0초, encode SDR=50.62dB)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 PLV=0.9988 SI-SNR=50.63dB
+  [MP3_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9987 SI-SNR=49.9dB
+  [MP3_320kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9988 SI-SNR=50.62dB
+  [Resample_44100-16000RT] BER=0.0 NC=1.0 DSR=1 PLV=0.9988 SI-SNR=50.63dB
+  [Crop_10pct] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=0.475 NC=0.05 DSR=1 PLV=0.9904 SI-SNR=29.96dB
+  [Limiter] BER=0.0 NC=1.0 DSR=1 PLV=0.9988 SI-SNR=50.63dB
+  [Opus_64kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.994 SI-SNR=28.93dB
+  [AAC_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9985 SI-SNR=49.34dB
+  [TelephoneFilter] BER=0.025 NC=0.95 DSR=1 PLV=0.6135 SI-SNR=-2.18dB
+  [EnCodec_6kbps] BER=0.6 NC=-0.2 DSR=1 PLV=0.7298 SI-SNR=9.69dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.5106 SI-SNR=-41.07dB
+
+[14/17] 일반남여_일반통합06_F_1536505292_35_경상_실내_09412.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=16000 -> 44.1kHz, 5.8초, encode SDR=50.52dB)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.53dB
+  [MP3_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9988 SI-SNR=49.91dB
+  [MP3_320kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.51dB
+  [Resample_44100-16000RT] BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.51dB
+  [Crop_10pct] BER=0.0 NC=1.0 DSR=1 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=0.475 NC=0.05 DSR=1 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=0.6 NC=-0.2 DSR=1 PLV=0.9905 SI-SNR=29.97dB
+  [Limiter] BER=0.0 NC=1.0 DSR=1 PLV=0.9989 SI-SNR=50.53dB
+  [Opus_64kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9933 SI-SNR=28.77dB
+  [AAC_128kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9986 SI-SNR=48.49dB
+  [TelephoneFilter] BER=0.175 NC=0.65 DSR=1 PLV=0.5809 SI-SNR=-4.06dB
+  [EnCodec_6kbps] BER=0.675 NC=-0.35 DSR=1 PLV=0.7066 SI-SNR=9.75dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.5022 SI-SNR=-15.42dB
+
+[15/17] 통화_0029.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=8000 -> 44.1kHz, 2.3초, encode SDR=49.25dB)
+  [NoAttack]  BER=0.075 NC=0.85 DSR=1 PLV=0.9996 SI-SNR=49.26dB
+  [MP3_128kbps] BER=0.1 NC=0.8 DSR=1 PLV=0.9994 SI-SNR=44.61dB
+  [MP3_320kbps] BER=0.075 NC=0.85 DSR=1 PLV=0.9996 SI-SNR=48.88dB
+  [Resample_44100-16000RT] BER=0.075 NC=0.85 DSR=1 PLV=0.9996 SI-SNR=49.26dB
+  [Crop_10pct] BER=0.225 NC=0.55 DSR=1 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=1.0 NC=-1.0 DSR=0 PLV=0.9944 SI-SNR=29.96dB
+  [Limiter] BER=0.075 NC=0.85 DSR=1 PLV=0.9996 SI-SNR=49.26dB
+  [Opus_64kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.9926 SI-SNR=27.21dB
+  [AAC_128kbps] BER=0.225 NC=0.55 DSR=1 PLV=0.9988 SI-SNR=36.17dB
+  [TelephoneFilter] BER=1.0 NC=-1.0 DSR=0 PLV=0.4475 SI-SNR=-4.26dB
+  [EnCodec_6kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.6424 SI-SNR=6.29dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.4055 SI-SNR=-12.39dB
+
+[16/17] 통화_0030.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=8000 -> 44.1kHz, 1.6초, encode SDR=49.00dB)
+  [NoAttack]  BER=0.05 NC=0.9 DSR=1 PLV=0.9993 SI-SNR=49.03dB
+  [MP3_128kbps] BER=0.125 NC=0.75 DSR=1 PLV=0.9992 SI-SNR=48.31dB
+  [MP3_320kbps] BER=0.1 NC=0.8 DSR=1 PLV=0.9992 SI-SNR=48.93dB
+  [Resample_44100-16000RT] BER=0.05 NC=0.9 DSR=1 PLV=0.9993 SI-SNR=49.02dB
+  [Crop_10pct] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=0.65 NC=-0.3 DSR=1 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=0.45 NC=0.1 DSR=1 PLV=0.9891 SI-SNR=30.0dB
+  [Limiter] BER=0.05 NC=0.9 DSR=1 PLV=0.9993 SI-SNR=49.03dB
+  [Opus_64kbps] BER=0.475 NC=0.05 DSR=1 PLV=0.9915 SI-SNR=26.88dB
+  [AAC_128kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.9991 SI-SNR=47.3dB
+  [TelephoneFilter] BER=0.45 NC=0.1 DSR=1 PLV=0.5813 SI-SNR=-9.56dB
+  [EnCodec_6kbps] BER=0.35 NC=0.3 DSR=1 PLV=0.69 SI-SNR=9.85dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.4513 SI-SNR=-8.73dB
+
+[17/17] 통화_0031.wav
+Using the default SDR of 47 dB
+  [OK] 임베딩 완료 (원본 sr=8000 -> 44.1kHz, 3.1초, encode SDR=49.47dB)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 PLV=0.9998 SI-SNR=49.49dB
+  [MP3_128kbps] BER=0.05 NC=0.9 DSR=1 PLV=0.9995 SI-SNR=45.29dB
+  [MP3_320kbps] BER=0.0 NC=1.0 DSR=1 PLV=0.9997 SI-SNR=48.77dB
+  [Resample_44100-16000RT] BER=0.0 NC=1.0 DSR=1 PLV=0.9998 SI-SNR=49.49dB
+  [Crop_10pct] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [TSM_1.1x] BER=1.0 NC=-1.0 DSR=0 PLV= SI-SNR=dB
+  [AWGN_30dB] BER=1.0 NC=-1.0 DSR=0 PLV=0.9961 SI-SNR=29.96dB
+  [Limiter] BER=0.0 NC=1.0 DSR=1 PLV=0.9998 SI-SNR=49.49dB
+  [Opus_64kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.993 SI-SNR=26.58dB
+  [AAC_128kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.999 SI-SNR=40.32dB
+  [TelephoneFilter] BER=1.0 NC=-1.0 DSR=0 PLV=0.3938 SI-SNR=-7.54dB
+  [EnCodec_6kbps] BER=1.0 NC=-1.0 DSR=0 PLV=0.6096 SI-SNR=6.05dB
+  [DAC] BER=1.0 NC=-1.0 DSR=0 PLV=0.4109 SI-SNR=-6.09dB
+
+============================================================
+  전체 파이프라인 완료
+============================================================
+  단계                       BER      DSR      PLV      SI-SNR     판정
+  -----------------------------------------------------------------
+  NoAttack                 0.0156   100.0%     0.9993   49.58dB     통과
+  MP3_128kbps              0.0344   100.0%     0.9967   44.06dB     통과
+  MP3_320kbps              0.0219   100.0%     0.9988   48.43dB     통과
+  Resample_44100-16000RT   0.0156   100.0%     0.9784   43.98dB     통과
+  Crop_10pct               0.4031   62.5%              dB     붕괴
+  TSM_1.1x                 0.8906   25.0%              dB     붕괴
+  AWGN_30dB                0.5656   62.5%     0.9888   29.96dB     붕괴
+  Limiter                  0.0156   100.0%     0.9993   49.58dB     통과
+  Opus_64kbps              0.3094   75.0%     0.9843   25.79dB     붕괴
+  AAC_128kbps              0.2781   75.0%     0.9964   41.15dB     붕괴
+  TelephoneFilter          0.7063   37.5%     0.446    -7.34dB     붕괴
+  EnCodec_6kbps            0.8281   37.5%     0.6343   7.8dB     붕괴
+  DAC                      1.0      0.0%     0.4153   -12.74dB     붕괴
+============================================================
+  전체 결과 CSV : /home/hansung1/.vscode-server/audio/sc44_pipeline_results/pipeline_full_results.csv
+  요약 CSV      : /home/hansung1/.vscode-server/audio/sc44_pipeline_results/pipeline_full_summary.csv
+  콘텐츠 특성 CSV: /home/hansung1/.vscode-server/audio/sc44_pipeline_results/content_features.csv
+  임베딩 결과   : /home/hansung1/.vscode-server/audio/sc44_embed
+  44.1k 원본    : /home/hansung1/.vscode-server/audio/sc44_pipeline_results/original_44k1_mono
+  차이 스펙트로그램(105개): /home/hansung1/.vscode-server/audio/sc44_pipeline_results/diff_spectrograms
+============================================================

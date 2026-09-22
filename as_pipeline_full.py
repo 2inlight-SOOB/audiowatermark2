@@ -41,7 +41,7 @@ AudioSeal 통합 파이프라인 — 임베딩 → 무공격 지표 → 5종 공
 STEP 1. original/ 의 원본(어떤 sr·길이든)을 mono+16kHz로 변환해 워터마크 삽입
 STEP 2. 원본 콘텐츠 특성 5개 계산: Spectral Flatness, Spectral Centroid,
         Effective Bandwidth(99%), Silence Ratio, Crest Factor
-STEP 3. 무공격 상태(원본 vs 워터마크) 지표: BER, NC, DSR, MIoU·F1·IoU, SI-SNR, ViSQOL*, ODG*, 차이 스펙트로그램
+STEP 3. 무공격 상태(원본 vs 워터마크) 지표: BER, NC, DSR, MIoU·F1·IoU, SI-SNR, ViSQOL*, PESQ*, ODG*, 차이 스펙트로그램
 STEP 4. 아래 5개 공격 카테고리(총 8개 조건)를 적용한 뒤 동일 지표 재계산
     - 압축        : MP3 128kbps / 320kbps
     - 추가 압축/전화망: AAC 128kbps, TelephoneFilter
@@ -55,13 +55,17 @@ MIoU·F1·IoU(위치 탐지)는 AudioSeal 탐지기가 프레임 단위로 내�
 전체 구간이 워터마크되어 있다는 정답 마스크와 비교해 계산한다. 공격 전(NoAttack)에도
 계산해서 삽입·탐지 파이프라인 자체의 위치추적 하한선을 먼저 확인한다.
 
-동기화 파괴 공격(Crop, TSM) 이후에는 시간축이 어긋나 샘플 단위 정렬 비교가
-무의미하므로 SI-SNR/ViSQOL/ODG는 계산하지 않고 BER/NC/DSR/MIoU·F1·IoU만 기록한다.
-(정답 마스크도 Crop/TSM과 동일하게 시간 변형해서 정합을 맞춘다. 다만 차이
-스펙트로그램은 시각 비교용으로 Crop/TSM에서도 그대로 저장한다 — 정렬이
-어긋난 상태라는 걸 감안하고 참고용으로만 볼 것.)
+동기화 파괴 공격(Crop, TSM) 이후에는 탐지(BER/NC/DSR/MIoU·F1·IoU)는 실제 공격된
+신호 그대로 측정하되, SI-SNR/ViSQOL/PESQ는 알려진 변형 파라미터로 시간축을
+재정렬한 신호 쌍으로 계산한다: Crop은 원본에서도 동일 구간을 잘라내 같은 길이로
+비교하고, TSM은 공격 신호를 역배속(1/rate)해 원래 길이로 되돌린 뒤 비교한다.
+(정답 마스크도 Crop/TSM과 동일하게 시간 변형해서 정합을 맞춘다. 차이 스펙트로그램도
+이 정렬된 신호 쌍 기준으로 저장한다.)
 
-* ViSQOL은 전체 평가에 포함되므로 해당 패키지를 설치해야 한다. ODG는 현재 미구현이다.
+* ViSQOL/PESQ는 전체 평가에 포함되므로 각각 `visqol-python`, `pesq` 패키지를
+  설치해야 한다 (미설치 시 해당 값만 빈 칸으로 남고 나머지는 정상 진행).
+  ODG(PEAQ)는 유지보수되는 파이썬 패키지가 없어 여전히 미구현이며, 대신 PESQ를
+  투명성 지표로 사용한다.
 
 결과: as_pipeline_results/pipeline_full_results.csv   (파일 x 단계 전체 결과)
     as_pipeline_results/pipeline_full_summary.csv   (단계별 평균 요약)
@@ -174,6 +178,38 @@ def compute_visqol(ref, deg, sr):
 def compute_odg(ref, deg, sr):
     """PEAQ 기반 ODG. 유지보수되는 파이썬 패키지가 없어 기본 비활성화."""
     return None
+
+
+# ------------------------------------------------------------
+#  PESQ (선택적 — 설치돼 있을 때만 계산, 없으면 자동 스킵)
+#  ODG(PEAQ)의 실질적인 대체 지표. wideband 모드는 16kHz 입력을 요구한다.
+# ------------------------------------------------------------
+try:
+    from pesq import pesq as _pesq_fn
+
+    PESQ_AVAILABLE = True
+except Exception as e:
+    PESQ_AVAILABLE = False
+    print(f"PESQ 미사용 (미설치): {e}")
+
+
+def compute_pesq(ref, deg, sr):
+    if not PESQ_AVAILABLE:
+        return None
+    try:
+        if sr == 16000:
+            r, d, pesq_sr, mode = ref, deg, 16000, "wb"
+        elif sr == 8000:
+            r, d, pesq_sr, mode = ref, deg, 8000, "nb"
+        else:
+            pesq_sr, mode = 16000, "wb"
+            r = librosa.resample(ref, orig_sr=sr, target_sr=pesq_sr)
+            d = librosa.resample(deg, orig_sr=sr, target_sr=pesq_sr)
+        n = min(len(r), len(d))
+        return float(_pesq_fn(pesq_sr, r[:n].astype(np.float32), d[:n].astype(np.float32), mode))
+    except Exception as e:
+        print(f"    PESQ 계산 실패: {e}")
+        return None
 
 
 # ------------------------------------------------------------
@@ -494,21 +530,31 @@ def attack_resample_roundtrip(wm, sr, mid_sr):
     return np.clip(down.astype(np.float32), -1.0, 1.0)
 
 
-def attack_crop_with_mask(wm, mask, ratio):
+def attack_crop_with_mask(wm, mask, orig, ratio):
+    """Crop은 원본에서도 같은 구간을 잘라내면 시간축이 샘플 단위로 다시 맞으므로,
+    잘라낸 원본을 품질 지표(SI-SNR/ViSQOL/PESQ)의 기준 신호로 함께 반환한다."""
     n = len(wm)
     cut_len = int(n * ratio)
     start = np.random.randint(0, max(1, n - cut_len))
     audio_out = np.concatenate([wm[:start], wm[start + cut_len:]]).astype(np.float32)
     mask_out = np.concatenate([mask[:start], mask[start + cut_len:]])
-    return audio_out, mask_out
+    n_orig = len(orig)
+    start_o = min(start, max(0, n_orig - cut_len))
+    orig_aligned = np.concatenate([orig[:start_o], orig[start_o + cut_len:]]).astype(np.float32)
+    return audio_out, mask_out, orig_aligned, audio_out, True   # 샘플 단위 정합 -> SI-SNR도 신뢰 가능
 
 
-def attack_tsm_with_mask(wm, mask, rate):
+def attack_tsm_with_mask(wm, mask, orig, rate):
+    """TSM은 알려진 배속을 역재생하면 원래 길이로는 복원되지만, phase vocoder 특성상
+    구간별로 남는 위상 밀림(local time drift)이 일정하지 않아 샘플 단위 정렬이 보장되지
+    않는다. 그래서 de-warp한 신호로 ViSQOL/PESQ(지각 기반, 정렬에 어느 정도 관대함)는
+    계산하되, 정렬에 극도로 민감한 SI-SNR은 신뢰할 수 없다고 표시한다."""
     audio_out = librosa.effects.time_stretch(wm, rate=rate).astype(np.float32)
     n_out = len(audio_out)
     idx = np.round(np.linspace(0, len(mask) - 1, n_out)).astype(int)
     mask_out = mask[idx]
-    return audio_out, mask_out
+    dewarped = librosa.effects.time_stretch(audio_out, rate=1.0 / rate).astype(np.float32)
+    return audio_out, mask_out, orig, dewarped, False   # SI-SNR 신뢰 불가 (국소 위상 밀림)
 
 
 def attack_awgn(wm, snr_db):
@@ -544,9 +590,9 @@ def build_attacks(sr):
     attacks.append({"name": f"Resample_{RESAMPLE_ROUNDTRIP_SR}RT", "desync": False,
                      "fn": lambda wm: attack_resample_roundtrip(wm, sr, RESAMPLE_ROUNDTRIP_SR)})
     attacks.append({"name": f"Crop_{int(CROP_RATIO*100)}pct", "desync": True, "combined": True,
-                     "fn": lambda wm, mask: attack_crop_with_mask(wm, mask, CROP_RATIO)})
+                     "fn": lambda wm, mask, orig: attack_crop_with_mask(wm, mask, orig, CROP_RATIO)})
     attacks.append({"name": f"TSM_{TSM_RATE}x", "desync": True, "combined": True,
-                     "fn": lambda wm, mask: attack_tsm_with_mask(wm, mask, TSM_RATE)})
+                     "fn": lambda wm, mask, orig: attack_tsm_with_mask(wm, mask, orig, TSM_RATE)})
     attacks.append({"name": f"AWGN_{AWGN_SNR_DB}dB", "desync": False,
                      "fn": lambda wm: attack_awgn(wm, AWGN_SNR_DB)})
     attacks.append({"name": "Limiter", "desync": False,
@@ -568,20 +614,31 @@ def build_attacks(sr):
 #  1개 파일에 대한 지표 1행 생성
 # ============================================================
 def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
-              desync, content_features, spec_out=None):
+              desync, content_features, spec_out=None, quality_ref=None, quality_deg=None,
+              sisnr_reliable=True):
+    """quality_ref/quality_deg: Crop/TSM처럼 시간축이 어긋나는 공격에서, 탐지에는 그대로의
+    attacked_audio를 쓰되 SI-SNR/ViSQOL/PESQ 계산에는 시간정렬된 신호 쌍을 별도로 넘긴다.
+    sisnr_reliable=False면(TSM처럼 국소 위상 밀림이 남는 경우) ViSQOL/PESQ는 계산하되
+    정렬에 민감한 SI-SNR만 비워 둔다."""
     ber, nc, dsr, detect_prob, pred_mask = decode_and_measure(detector, attacked_audio, sr)
     loc = localization_metrics(mask_gt, pred_mask)
 
-    sisnr = visqol_score = odg_score = None
-    if not desync:
-        min_len = min(len(orig16k), len(attacked_audio))
-        sisnr = si_snr(orig16k[:min_len], attacked_audio[:min_len])
-        visqol_score = compute_visqol(orig16k[:min_len], attacked_audio[:min_len], sr)
-        odg_score = compute_odg(orig16k[:min_len], attacked_audio[:min_len], sr)
+    ref_q = quality_ref if quality_ref is not None else orig16k
+    deg_q = quality_deg if quality_deg is not None else attacked_audio
+    can_measure_quality = (not desync) or (quality_ref is not None and quality_deg is not None)
+
+    sisnr = visqol_score = pesq_score = odg_score = None
+    if can_measure_quality:
+        min_len = min(len(ref_q), len(deg_q))
+        if sisnr_reliable:
+            sisnr = si_snr(ref_q[:min_len], deg_q[:min_len])
+        visqol_score = compute_visqol(ref_q[:min_len], deg_q[:min_len], sr)
+        pesq_score = compute_pesq(ref_q[:min_len], deg_q[:min_len], sr)
+        odg_score = compute_odg(ref_q[:min_len], deg_q[:min_len], sr)
 
     if spec_out is not None:
-        min_len = min(len(orig16k), len(attacked_audio))
-        save_diff_spectrogram(orig16k[:min_len], attacked_audio[:min_len], sr, spec_out)
+        min_len = min(len(ref_q), len(deg_q))
+        save_diff_spectrogram(ref_q[:min_len], deg_q[:min_len], sr, spec_out)
 
     return {
         "file": rel_name,
@@ -592,6 +649,7 @@ def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
         "detect_prob": round(detect_prob, 4),
         "SI-SNR(dB)": round(sisnr, 2) if sisnr is not None else "",
         "ViSQOL": round(visqol_score, 3) if visqol_score is not None else "",
+        "PESQ": round(pesq_score, 3) if pesq_score is not None else "",
         "ODG": round(odg_score, 3) if odg_score is not None else "",
         "IoU": round(loc["IoU"], 4),
         "MIoU": round(loc["MIoU"], 4),
@@ -633,7 +691,7 @@ def main():
     spec_saved = 0
     all_rows = []
     content_rows = []
-    fieldnames = ["file", "stage", "BER", "NC", "DSR", "detect_prob", "SI-SNR(dB)", "ViSQOL", "ODG",
+    fieldnames = ["file", "stage", "BER", "NC", "DSR", "detect_prob", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
                   "IoU", "MIoU", "F1", "SpectralFlatness", "SpectralCentroid_Hz",
                   "EffectiveBandwidth99_Hz", "SilenceRatio", "CrestFactor"]
     content_fieldnames = ["file", "SpectralFlatness", "SpectralCentroid_Hz",
@@ -694,8 +752,11 @@ def main():
             for atk in attacks:
                 wait_for_safe_temp()
                 try:
+                    quality_ref = quality_deg = None
+                    sisnr_reliable = True
                     if atk.get("combined"):
-                        attacked, mask_for_stage = atk["fn"](wm16, gt_mask)
+                        attacked, mask_for_stage, quality_ref, quality_deg, sisnr_reliable = \
+                            atk["fn"](wm16, gt_mask, orig16k)
                     else:
                         attacked = atk["fn"](wm16)
                         mask_for_stage = gt_mask
@@ -710,7 +771,9 @@ def main():
 
                     row = build_row(str(rel), atk["name"], orig16k, mask_for_stage, attacked, detector,
                                      SAMPLE_RATE, desync=atk["desync"],
-                                     content_features=content_features, spec_out=spec_out)
+                                     content_features=content_features, spec_out=spec_out,
+                                     quality_ref=quality_ref, quality_deg=quality_deg,
+                                     sisnr_reliable=sisnr_reliable)
                     all_rows.append(row)
                     print(f"  [{atk['name']}] BER={row['BER']} NC={row['NC']} DSR={row['DSR']} "
                           f"MIoU={row['MIoU']} SI-SNR={row['SI-SNR(dB)']}dB")
@@ -750,6 +813,7 @@ def main():
         dsr_vals = [r["DSR"] for r in stage_rows]
         sisnr_vals = [r["SI-SNR(dB)"] for r in stage_rows if r["SI-SNR(dB)"] != ""]
         visqol_vals = [r["ViSQOL"] for r in stage_rows if r["ViSQOL"] != ""]
+        pesq_vals = [r["PESQ"] for r in stage_rows if r["PESQ"] != ""]
         miou_vals = [r["MIoU"] for r in stage_rows if r["MIoU"] != ""]
         f1_vals = [r["F1"] for r in stage_rows if r["F1"] != ""]
 
@@ -762,6 +826,7 @@ def main():
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(sisnr_vals)), 2) if sisnr_vals else "",
             "평균ViSQOL": round(float(np.mean(visqol_vals)), 3) if visqol_vals else "",
+            "평균PESQ": round(float(np.mean(pesq_vals)), 3) if pesq_vals else "",
             "평균MIoU": round(float(np.mean(miou_vals)), 4) if miou_vals else "",
             "평균F1": round(float(np.mean(f1_vals)), 4) if f1_vals else "",
             "판정": "통과" if dsr_rate >= DSR_PASS_RATE else "붕괴",

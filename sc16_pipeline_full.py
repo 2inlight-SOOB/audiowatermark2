@@ -64,7 +64,7 @@ AudioSeal/WavMark처럼 계산할 수 없다 — sc44_pipeline_full.py와 동일
 
 import os
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "0"   # GPU 0번만 사용
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"   # GPU 2번만 사용
 
 import csv
 import time
@@ -100,8 +100,9 @@ SAMPLE_RATE  = 16000          # SC-16 고정
 DEVICE       = "cuda" if torch.cuda.is_available() else "cpu"
 MODEL_TYPE   = "16k"
 
-# GPU 온도 제한 (nvidia-smi 기반)
-GPU_INDEX      = 0
+# GPU 온도 제한 (nvidia-smi 기반, 물리적 GPU 인덱스 -- CUDA_VISIBLE_DEVICES와 무관하게
+# nvidia-smi --id는 실제 GPU 번호를 그대로 받는다)
+GPU_INDEX      = 2
 TEMP_LIMIT_C   = 78.0
 TEMP_RESUME_C  = 70.0
 TEMP_POLL_SEC  = 10
@@ -166,6 +167,38 @@ def compute_visqol(ref, deg, sr):
 def compute_odg(ref, deg, sr):
     """PEAQ 기반 ODG. 유지보수되는 파이썬 패키지가 없어 기본 비활성화."""
     return None
+
+
+# ------------------------------------------------------------
+#  PESQ (선택적 — 설치돼 있을 때만 계산, 없으면 자동 스킵)
+#  ODG(PEAQ)의 실질적인 대체 지표. wideband 모드는 16kHz 입력을 요구한다.
+# ------------------------------------------------------------
+try:
+    from pesq import pesq as _pesq_fn
+
+    PESQ_AVAILABLE = True
+except Exception as e:
+    PESQ_AVAILABLE = False
+    print(f"PESQ 미사용 (미설치): {e}")
+
+
+def compute_pesq(ref, deg, sr):
+    if not PESQ_AVAILABLE:
+        return None
+    try:
+        if sr == 16000:
+            r, d, pesq_sr, mode = ref, deg, 16000, "wb"
+        elif sr == 8000:
+            r, d, pesq_sr, mode = ref, deg, 8000, "nb"
+        else:
+            pesq_sr, mode = 16000, "wb"
+            r = librosa.resample(ref, orig_sr=sr, target_sr=pesq_sr)
+            d = librosa.resample(deg, orig_sr=sr, target_sr=pesq_sr)
+        n = min(len(r), len(d))
+        return float(_pesq_fn(pesq_sr, r[:n].astype(np.float32), d[:n].astype(np.float32), mode))
+    except Exception as e:
+        print(f"    PESQ 계산 실패: {e}")
+        return None
 
 
 # ------------------------------------------------------------
@@ -532,15 +565,26 @@ def attack_resample_roundtrip(wm, sr, mid_sr):
     return np.clip(down.astype(np.float32), -1.0, 1.0)
 
 
-def attack_crop(wm, ratio):
+def attack_crop(wm, orig, ratio):
+    """원본에서도 같은 구간을 잘라내면 시간축이 샘플 단위로 다시 맞으므로,
+    잘라낸 원본을 품질 지표(SI-SNR/ViSQOL/PESQ)의 기준 신호로 함께 반환한다."""
     n = len(wm)
     cut_len = int(n * ratio)
     start = np.random.randint(0, max(1, n - cut_len))
-    return np.concatenate([wm[:start], wm[start + cut_len:]]).astype(np.float32)
+    audio_out = np.concatenate([wm[:start], wm[start + cut_len:]]).astype(np.float32)
+    n_orig = len(orig)
+    start_o = min(start, max(0, n_orig - cut_len))
+    orig_aligned = np.concatenate([orig[:start_o], orig[start_o + cut_len:]]).astype(np.float32)
+    return audio_out, orig_aligned, audio_out, True   # 샘플 단위 정합 -> SI-SNR도 신뢰 가능
 
 
-def attack_tsm(wm, rate):
-    return librosa.effects.time_stretch(wm, rate=rate).astype(np.float32)
+def attack_tsm(wm, orig, rate):
+    """알려진 배속을 역재생하면 길이는 복원되지만 phase vocoder 특성상 구간별 위상
+    밀림이 남아 샘플 단위 정렬은 보장되지 않는다. de-warp한 신호로 ViSQOL/PESQ는
+    계산하되, 정렬에 극도로 민감한 SI-SNR은 신뢰할 수 없다고 표시한다."""
+    audio_out = librosa.effects.time_stretch(wm, rate=rate).astype(np.float32)
+    dewarped = librosa.effects.time_stretch(audio_out, rate=1.0 / rate).astype(np.float32)
+    return audio_out, orig, dewarped, False   # SI-SNR 신뢰 불가 (국소 위상 밀림)
 
 
 def attack_awgn(wm, snr_db):
@@ -574,10 +618,10 @@ def build_attacks(sr):
                          "fn": lambda wm, br=br: attack_mp3(wm, sr, br)})
     attacks.append({"name": f"Resample_{RESAMPLE_ROUNDTRIP_SR}RT", "desync": False,
                      "fn": lambda wm: attack_resample_roundtrip(wm, sr, RESAMPLE_ROUNDTRIP_SR)})
-    attacks.append({"name": f"Crop_{int(CROP_RATIO*100)}pct", "desync": True,
-                     "fn": lambda wm: attack_crop(wm, CROP_RATIO)})
-    attacks.append({"name": f"TSM_{TSM_RATE}x", "desync": True,
-                     "fn": lambda wm: attack_tsm(wm, TSM_RATE)})
+    attacks.append({"name": f"Crop_{int(CROP_RATIO*100)}pct", "desync": True, "combined": True,
+                     "fn": lambda wm, orig: attack_crop(wm, orig, CROP_RATIO)})
+    attacks.append({"name": f"TSM_{TSM_RATE}x", "desync": True, "combined": True,
+                     "fn": lambda wm, orig: attack_tsm(wm, orig, TSM_RATE)})
     attacks.append({"name": f"AWGN_{AWGN_SNR_DB}dB", "desync": False,
                      "fn": lambda wm: attack_awgn(wm, AWGN_SNR_DB)})
     attacks.append({"name": "Limiter", "desync": False,
@@ -599,22 +643,33 @@ def build_attacks(sr):
 #  1개 파일에 대한 지표 1행 생성
 # ============================================================
 def build_row(rel_name, stage, orig16k, attacked_audio, model, sr, desync,
-              content_features, spec_out=None):
+              content_features, spec_out=None, quality_ref=None, quality_deg=None,
+              sisnr_reliable=True):
+    """quality_ref/quality_deg: Crop/TSM처럼 시간축이 어긋나는 공격에서, 탐지에는 그대로의
+    attacked_audio를 쓰되 SI-SNR/ViSQOL/PESQ/위상 지표 계산에는 시간정렬된 신호 쌍을
+    별도로 넘긴다. sisnr_reliable=False면(TSM처럼 국소 위상 밀림이 남는 경우) ViSQOL/PESQ는
+    계산하되 정렬에 극도로 민감한 SI-SNR·위상 지표는 비워 둔다."""
     ber, nc, dsr, confidence = decode_and_measure(model, attacked_audio, sr)
 
-    sisnr = visqol_score = odg_score = None
+    ref_q = quality_ref if quality_ref is not None else orig16k
+    deg_q = quality_deg if quality_deg is not None else attacked_audio
+    can_measure_quality = (not desync) or (quality_ref is not None and quality_deg is not None)
+
+    sisnr = visqol_score = pesq_score = odg_score = None
     plv = phase_diff = gd_mae = None
-    if not desync:
-        min_len = min(len(orig16k), len(attacked_audio))
-        sisnr = si_snr(orig16k[:min_len], attacked_audio[:min_len])
-        visqol_score = compute_visqol(orig16k[:min_len], attacked_audio[:min_len], sr)
-        odg_score = compute_odg(orig16k[:min_len], attacked_audio[:min_len], sr)
-        ph = phase_consistency_metrics(orig16k, attacked_audio, sr)
-        plv, phase_diff, gd_mae = ph["PLV"], ph["PhaseDiff_rad"], ph["GroupDelayMAE"]
+    if can_measure_quality:
+        min_len = min(len(ref_q), len(deg_q))
+        visqol_score = compute_visqol(ref_q[:min_len], deg_q[:min_len], sr)
+        pesq_score = compute_pesq(ref_q[:min_len], deg_q[:min_len], sr)
+        odg_score = compute_odg(ref_q[:min_len], deg_q[:min_len], sr)
+        if sisnr_reliable:
+            sisnr = si_snr(ref_q[:min_len], deg_q[:min_len])
+            ph = phase_consistency_metrics(ref_q[:min_len], deg_q[:min_len], sr)
+            plv, phase_diff, gd_mae = ph["PLV"], ph["PhaseDiff_rad"], ph["GroupDelayMAE"]
 
     if spec_out is not None:
-        min_len = min(len(orig16k), len(attacked_audio))
-        save_diff_spectrogram(orig16k[:min_len], attacked_audio[:min_len], sr, spec_out)
+        min_len = min(len(ref_q), len(deg_q))
+        save_diff_spectrogram(ref_q[:min_len], deg_q[:min_len], sr, spec_out)
 
     return {
         "file": rel_name,
@@ -625,6 +680,7 @@ def build_row(rel_name, stage, orig16k, attacked_audio, model, sr, desync,
         "confidence": round(confidence, 4),
         "SI-SNR(dB)": round(sisnr, 2) if sisnr is not None else "",
         "ViSQOL": round(visqol_score, 3) if visqol_score is not None else "",
+        "PESQ": round(pesq_score, 3) if pesq_score is not None else "",
         "ODG": round(odg_score, 3) if odg_score is not None else "",
         "PLV": round(plv, 4) if plv is not None else "",
         "PhaseDiff_rad": round(phase_diff, 4) if phase_diff is not None else "",
@@ -694,7 +750,7 @@ def main():
     print(f"공격 단계: {[a['name'] for a in attacks]}")
     print("=" * 60)
 
-    fieldnames = ["file", "stage", "BER", "NC", "DSR", "confidence", "SI-SNR(dB)", "ViSQOL", "ODG",
+    fieldnames = ["file", "stage", "BER", "NC", "DSR", "confidence", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
                   "PLV", "PhaseDiff_rad", "GroupDelayMAE", "SpectralFlatness",
                   "SpectralCentroid_Hz", "EffectiveBandwidth99_Hz", "SilenceRatio", "CrestFactor"]
     csv_path = RESULT_DIR / "pipeline_full_results.csv"
@@ -772,7 +828,12 @@ def main():
             for atk in attacks:
                 wait_for_safe_temp()
                 try:
-                    attacked = atk["fn"](wm16)
+                    quality_ref = quality_deg = None
+                    sisnr_reliable = True
+                    if atk.get("combined"):
+                        attacked, quality_ref, quality_deg, sisnr_reliable = atk["fn"](wm16, orig16k)
+                    else:
+                        attacked = atk["fn"](wm16)
                     if attacked is None:   # 예: EnCodec 실행 실패
                         continue
 
@@ -784,7 +845,9 @@ def main():
 
                     row = build_row(str(rel), atk["name"], orig16k, attacked, model,
                                      SAMPLE_RATE, desync=atk["desync"],
-                                     content_features=content_features, spec_out=spec_out)
+                                     content_features=content_features, spec_out=spec_out,
+                                     quality_ref=quality_ref, quality_deg=quality_deg,
+                                     sisnr_reliable=sisnr_reliable)
                     all_rows.append(row)
                     print(f"  [{atk['name']}] BER={row['BER']} NC={row['NC']} DSR={row['DSR']} "
                           f"PLV={row['PLV']} SI-SNR={row['SI-SNR(dB)']}dB")
@@ -835,6 +898,7 @@ def main():
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(numeric("SI-SNR(dB)"))), 2) if numeric("SI-SNR(dB)") else "",
             "평균ViSQOL": round(float(np.mean(numeric("ViSQOL"))), 3) if numeric("ViSQOL") else "",
+            "평균PESQ": round(float(np.mean(numeric("PESQ"))), 3) if numeric("PESQ") else "",
             "평균PLV": round(float(np.mean(numeric("PLV"))), 4) if numeric("PLV") else "",
             "평균GroupDelayMAE": round(float(np.mean(numeric("GroupDelayMAE"))), 4) if numeric("GroupDelayMAE") else "",
             "판정": "통과" if dsr_rate >= DSR_PASS_RATE else "붕괴",

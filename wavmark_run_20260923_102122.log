@@ -1,0 +1,1383 @@
+/home/hansung1/.vscode-server/audio/venv/lib/python3.10/site-packages/numba/np/ufunc/parallel.py:373: NumbaWarning: The TBB threading layer requires TBB version 2021 update 6 or later i.e., TBB_INTERFACE_VERSION >= 12060. Found TBB_INTERFACE_VERSION = 12050. The TBB threading layer is disabled.
+  warnings.warn(problem)
+WavMark 모델 로딩 중...
+완료!
+
+WM_ID   : 2inlightSOOB-0001
+payload : [1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 1]
+
+총 원본 파일 수: 100개
+공격 단계: ['AWGN_30dB', 'Resample_44100RT', 'Limiter', 'MP3_128kbps', 'MP3_320kbps', 'AAC_128kbps', 'TelephoneFilter', 'Opus_32kbps', 'Crop_10pct', 'TSM_1.1x', 'EnCodec_6kbps', 'DAC']
+============================================================
+※ WavMark 디코딩은 슬라이딩 윈도우 전수 탐색 방식이라 긴 트랙에서는
+   AudioSeal 대비 훨씬 오래 걸릴 수 있습니다.
+============================================================
+
+[1/100] 0431_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.09dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4581 SI-SNR=29.22dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.39dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.09dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=22.69dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=22.69dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.63dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5816 SI-SNR=-4.92dB
+  [Opus_32kbps] BER=1.0 BitAcc= DSR=0 MIoU=0.0556 SI-SNR=16.77dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6282 SI-SNR=37.1dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.1867 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=1.34dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-13.24dB
+
+[2/100] 0435_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.24dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3337 SI-SNR=29.26dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.57dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.24dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=27.22dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=27.22dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.91dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.507 SI-SNR=-5.13dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.1826 SI-SNR=18.5dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.587 SI-SNR=37.35dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2954 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=1.97dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-15.26dB
+
+[3/100] 0437_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5545 SI-SNR=37.43dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.432 SI-SNR=29.27dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=36.73dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=37.43dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=27.21dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=27.2dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=32.27dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=-6.51dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2304 SI-SNR=18.59dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5339 SI-SNR=37.55dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2425 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=1.41dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-11.88dB
+
+[4/100] 0438_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.73dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4454 SI-SNR=29.32dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.38dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.73dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=26.92dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=26.92dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.83dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.6059 SI-SNR=-3.43dB
+  [Opus_32kbps] BER=0.0625 BitAcc= DSR=1 MIoU=0.125 SI-SNR=18.03dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5772 SI-SNR=37.78dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.3607 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=0.66dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-35.5dB
+
+[5/100] 0442_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.82dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4489 SI-SNR=29.34dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.83dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.82dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=25.68dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=25.68dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.07dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.468 SI-SNR=-0.45dB
+  [Opus_32kbps] BER=0.0625 BitAcc= DSR=1 MIoU=0.118 SI-SNR=19.48dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5414 SI-SNR=37.93dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.1829 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=2.41dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-12.28dB
+
+[6/100] 0451_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.09dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4235 SI-SNR=29.21dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.27dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.09dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=25.66dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=25.66dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.37dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4217 SI-SNR=-7.84dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.1214 SI-SNR=18.78dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5339 SI-SNR=36.9dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.302 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=-3.0dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-18.64dB
+
+[7/100] 0466_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.7dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5265 SI-SNR=29.18dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.23dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.7dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=27.87dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=27.87dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=33.42dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4821 SI-SNR=-0.68dB
+  [Opus_32kbps] BER=0.125 BitAcc= DSR=1 MIoU=0.2424 SI-SNR=18.16dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5681 SI-SNR=36.75dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.429 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=-1.13dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-14.44dB
+
+[8/100] 0467_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.87dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.507 SI-SNR=29.19dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.54dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.87dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=24.67dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=24.68dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.35dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4913 SI-SNR=-2.39dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.1913 SI-SNR=17.87dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4965 SI-SNR=36.42dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.2468 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=-0.24dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-27.19dB
+
+[9/100] 0477_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5545 SI-SNR=36.98dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.6059 SI-SNR=29.22dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=36.28dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=36.98dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=29.33dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=29.33dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=33.94dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4726 SI-SNR=-0.28dB
+  [Opus_32kbps] BER=0.0625 BitAcc= DSR=1 MIoU=0.1799 SI-SNR=19.15dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5533 SI-SNR=36.85dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3649 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=0.95dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-10.16dB
+
+[10/100] 0479_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.56dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.468 SI-SNR=29.13dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.4dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.56dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.22dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.35dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.17dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4726 SI-SNR=-3.0dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.118 SI-SNR=19.11dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6033 SI-SNR=36.58dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=0.85dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-33.97dB
+
+[11/100] 0484_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.44dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3486 SI-SNR=29.26dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.55dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.44dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=27.0dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=26.99dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=34.35dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4634 SI-SNR=-2.93dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2945 SI-SNR=19.32dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5148 SI-SNR=37.49dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3732 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=1.24dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-25.56dB
+
+[12/100] 0487_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.6dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4871 SI-SNR=29.16dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.2dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.6dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=22.21dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=22.21dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.21dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5998 SI-SNR=-1.9dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2337 SI-SNR=17.28dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4395 SI-SNR=36.47dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3559 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=-1.87dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-12.99dB
+
+[13/100] 0488_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.33dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.409 SI-SNR=29.24dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.25dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.33dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=23.33dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=23.33dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.02dB
+  [TelephoneFilter] BER=0.0625 BitAcc= DSR=1 MIoU=0.361 SI-SNR=1.38dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.1214 SI-SNR=19.66dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5215 SI-SNR=37.21dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3379 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=0.76dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-6.48dB
+
+[14/100] 0496_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.25dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4625 SI-SNR=29.27dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.28dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.25dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.76dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.76dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.0dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.3529 SI-SNR=-1.71dB
+  [Opus_32kbps] BER=0.25 BitAcc= DSR=1 MIoU=0.1145 SI-SNR=18.46dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5148 SI-SNR=37.43dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.302 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=2.85dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-21.86dB
+
+[15/100] 0497_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.83dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3017 SI-SNR=29.34dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.1dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.83dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.51dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.51dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.08dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5651 SI-SNR=-2.67dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5162 SI-SNR=19.75dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=37.82dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.4659 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.92dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-13.95dB
+
+[16/100] 0505_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.59dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.507 SI-SNR=29.3dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.21dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.59dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.54dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.54dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.98dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5733 SI-SNR=-2.62dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2372 SI-SNR=18.11dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.587 SI-SNR=37.64dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.4127 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=3.96dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-14.79dB
+
+[17/100] 0507_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.36dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4259 SI-SNR=29.26dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.61dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.25dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.28dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.28dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.16dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4437 SI-SNR=-3.71dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2973 SI-SNR=18.76dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5084 SI-SNR=37.36dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3654 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=4.52dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-13.34dB
+
+[18/100] 0514_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.4994 SI-SNR=37.74dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4115 SI-SNR=29.32dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=37.6dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=32.95dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.98dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.98dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=30.31dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4625 SI-SNR=-5.33dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.246 SI-SNR=19.33dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.512 SI-SNR=37.89dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.4244 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.96dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-8.43dB
+
+[19/100] 0515_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5545 SI-SNR=37.57dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5579 SI-SNR=29.29dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=37.25dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=37.57dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=31.83dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=31.83dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=30.79dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4822 SI-SNR=-4.35dB
+  [Opus_32kbps] BER=0.0625 BitAcc= DSR=1 MIoU=0.1756 SI-SNR=19.09dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5681 SI-SNR=37.67dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3518 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.18dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-11.11dB
+
+[20/100] 0519_민속악_판소리.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.41dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3419 SI-SNR=29.3dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.22dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.41dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.4dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.4dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.41dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4871 SI-SNR=-4.28dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.3523 SI-SNR=19.94dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5215 SI-SNR=37.51dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.9dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-10.27dB
+
+[21/100] Similar_Dance_00002_Cover_Arrangement_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=38.0dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3045 SI-SNR=29.37dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.39dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=20.01dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.11dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.1dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.16dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4726 SI-SNR=-21.31dB
+  [Opus_32kbps] BER=0.125 BitAcc= DSR=1 MIoU=0.125 SI-SNR=18.97dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5268 SI-SNR=37.93dB
+    PESQ 계산 실패: b'No utterances detected'
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.314 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=9.82dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=3.25dB
+
+[22/100] Similar_Dance_00002_Cover_Genre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.77dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=29.34dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.3dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=22.36dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.63dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.63dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.04dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5733 SI-SNR=-14.1dB
+  [Opus_32kbps] BER=0.125 BitAcc= DSR=1 MIoU=0.118 SI-SNR=17.62dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5339 SI-SNR=37.79dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2391 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.49dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=0.57dB
+
+[23/100] Similar_Dance_00002_Cover_Instrument_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.17dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3975 SI-SNR=29.25dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.92dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=20.58dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.01dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.0dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.02dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=-5.35dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.3421 SI-SNR=19.37dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5023 SI-SNR=37.18dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.1905 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=6.25dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-9.25dB
+
+[24/100] Similar_Dance_00002_Cover_Instrument_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.41dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4871 SI-SNR=29.24dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.16dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=21.49dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.84dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.84dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.05dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=-5.62dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2269 SI-SNR=19.22dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5518 SI-SNR=37.45dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3469 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=6.08dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-8.91dB
+
+[25/100] Similar_Dance_00002_Cover_Rhythm_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.77dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4363 SI-SNR=29.32dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.6dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=28.15dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.66dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.66dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.12dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=-25.37dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2945 SI-SNR=19.75dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=37.76dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2936 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=10.17dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=3.25dB
+
+[26/100] Similar_Dance_00002_Cover_Tempo_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.85dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4477 SI-SNR=29.19dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.62dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.85dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=27.78dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=27.78dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.5dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5733 SI-SNR=-0.86dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.3529 SI-SNR=16.2dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5148 SI-SNR=36.86dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.1218 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=1.93dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-25.79dB
+
+[27/100] Similar_Dance_00002_Cover_Tempo_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.64dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=29.16dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.01dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.64dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.16dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.16dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.4dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=1.03dB
+  [Opus_32kbps] BER=0.0625 BitAcc= DSR=1 MIoU=0.2496 SI-SNR=16.31dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=36.66dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.306 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=0.5dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-43.41dB
+
+[28/100] Similar_Dance_00002_Cover_Timbre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.02dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4871 SI-SNR=29.24dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.68dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=24.49dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.9dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.91dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.93dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-4.11dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2388 SI-SNR=18.4dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6083 SI-SNR=37.48dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3547 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.35dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-12.09dB
+
+[29/100] Similar_Dance_00002_Cover_Timbre_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.35dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3937 SI-SNR=29.24dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.95dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=24.01dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.67dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.68dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.95dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-4.17dB
+  [Opus_32kbps] BER=0.125 BitAcc= DSR=1 MIoU=0.3073 SI-SNR=18.57dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=37.39dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3607 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.14dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-11.4dB
+
+[30/100] Similar_Dance_00002_Org.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=38.01dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.5192 SI-SNR=29.34dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.37dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5206 SI-SNR=24.45dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.62dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.61dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.26dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5499 SI-SNR=-8.33dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.1215 SI-SNR=19.19dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5148 SI-SNR=38.08dB
+  [TSM_1.1x] BER=0.1875 BitAcc= DSR=1 MIoU=0.118 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.71dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-2.29dB
+
+[31/100] Similar_Dance_00003_Cover_Arrangement_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.88dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3684 SI-SNR=29.37dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.26dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.88dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.75dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.74dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.52dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=-11.48dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4155 SI-SNR=19.05dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5668 SI-SNR=37.59dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.302 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.28dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-1.0dB
+
+[32/100] Similar_Dance_00003_Cover_Genre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=38.14dB
+  [AWGN_30dB] BER=0.25 BitAcc= DSR=1 MIoU=0.1885 SI-SNR=29.36dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.74dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=19.16dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.81dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.78dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.82dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5573 SI-SNR=-24.95dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4822 SI-SNR=21.43dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5494 SI-SNR=38.22dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3696 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=10.39dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=3.46dB
+
+[33/100] Similar_Dance_00003_Cover_Instrument_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5545 SI-SNR=37.87dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4217 SI-SNR=29.35dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=37.69dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=23.75dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=33.7dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=33.69dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=33.79dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.3646 SI-SNR=-11.15dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.3687 SI-SNR=18.93dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5947 SI-SNR=37.83dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2949 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=6.91dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-2.41dB
+
+[34/100] Similar_Dance_00003_Cover_Instrument_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.59dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.125 SI-SNR=29.12dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.48dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.59dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.92dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.81dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.12dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4217 SI-SNR=-10.9dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5145 SI-SNR=15.28dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5414 SI-SNR=37.55dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.4659 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.28dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-1.79dB
+
+[35/100] Similar_Dance_00003_Cover_Rhythm_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=38.01dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.35dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=38.01dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=38.01dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.73dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.73dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.78dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.468 SI-SNR=1.86dB
+  [Opus_32kbps] BER=0.0625 BitAcc= DSR=1 MIoU=0.4135 SI-SNR=18.51dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=38.04dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.4041 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.48dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-16.04dB
+
+[36/100] Similar_Dance_00003_Cover_Tempo_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.64dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5308 SI-SNR=29.28dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.51dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.64dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.74dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.72dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.58dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.6098 SI-SNR=-16.21dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.507 SI-SNR=18.21dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5084 SI-SNR=37.54dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2942 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.32dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=0.71dB
+
+[37/100] Similar_Dance_00003_Cover_Tempo_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.56dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4135 SI-SNR=29.28dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.49dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.56dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.24dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.25dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.21dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5998 SI-SNR=-10.62dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6098 SI-SNR=18.99dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=37.52dB
+  [TSM_1.1x] BER=0.1875 BitAcc= DSR=1 MIoU=0.1744 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.05dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-2.24dB
+
+[38/100] Similar_Dance_00003_Cover_Timbre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.47dB
+  [AWGN_30dB] BER=0.125 BitAcc= DSR=1 MIoU=0.1877 SI-SNR=29.12dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.46dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.47dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.01dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.94dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.46dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4773 SI-SNR=-9.42dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=16.03dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=37.45dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.5242 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.42dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-2.89dB
+
+[39/100] Similar_Dance_00003_Cover_Timbre_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.59dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.1764 SI-SNR=29.09dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.48dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.59dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.92dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.81dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.12dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4217 SI-SNR=-10.9dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5145 SI-SNR=15.28dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5215 SI-SNR=37.7dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.4659 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.28dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-1.79dB
+
+[40/100] Similar_Dance_00003_Org.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.77dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.291 SI-SNR=29.32dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.43dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=22.39dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.07dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.06dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4625 SI-SNR=32.66dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4115 SI-SNR=-16.35dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.3045 SI-SNR=19.95dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5414 SI-SNR=37.76dB
+  [TSM_1.1x] BER=0.1875 BitAcc= DSR=1 MIoU=0.118 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.4dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=0.76dB
+
+[41/100] Similar_Trot_00138_Cover_Arrangement_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.41dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5904 SI-SNR=29.27dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.27dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.41dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.71dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.74dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.2dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4773 SI-SNR=-9.39dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5308 SI-SNR=19.01dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5153 SI-SNR=37.7dB
+  [TSM_1.1x] BER=0.125 BitAcc= DSR=1 MIoU=0.118 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=6.61dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-5.31dB
+
+[42/100] Similar_Trot_00138_Cover_Genre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5545 SI-SNR=36.88dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=29.2dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=36.51dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=34.3dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=32.89dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=32.9dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.55dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4634 SI-SNR=-9.2dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.2321 SI-SNR=17.79dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6006 SI-SNR=36.96dB
+  [TSM_1.1x] BER=0.375 BitAcc= DSR=1 MIoU=0.118 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=6.35dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-2.28dB
+
+[43/100] Similar_Trot_00138_Cover_Instrument_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.13dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5206 SI-SNR=29.24dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.02dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.13dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.71dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.69dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.3dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-17.68dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=17.51dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5286 SI-SNR=37.16dB
+  [TSM_1.1x] BER=0.1875 BitAcc= DSR=1 MIoU=0.118 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=6.58dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.76dB
+
+[44/100] Similar_Trot_00138_Cover_Instrument_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.4994 SI-SNR=37.87dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5206 SI-SNR=29.36dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=37.76dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=37.87dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.37dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.37dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.17dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=-18.99dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=18.05dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5266 SI-SNR=37.78dB
+  [TSM_1.1x] BER=0.25 BitAcc= DSR=1 MIoU=0.1791 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.81dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.15dB
+
+[45/100] Similar_Trot_00138_Cover_Rhythm_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=38.35dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.6059 SI-SNR=29.41dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.23dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.71dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=28.68dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=28.67dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.45dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4195 SI-SNR=-15.47dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.432 SI-SNR=19.01dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5272 SI-SNR=38.5dB
+  [TSM_1.1x] BER=0.1875 BitAcc= DSR=1 MIoU=0.1179 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=9.71dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=1.83dB
+
+[46/100] Similar_Trot_00138_Cover_Tempo_B.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.82dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.2dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.73dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.82dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.53dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.53dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.86dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-18.1dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4921 SI-SNR=18.04dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5958 SI-SNR=36.91dB
+  [TSM_1.1x] BER=1.0 BitAcc= DSR=0 MIoU=0.0556 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.57dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.44dB
+
+[47/100] Similar_Trot_00138_Cover_Tempo_D.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.16dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.07dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.05dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.16dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.37dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.37dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=32.78dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=-16.31dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5469 SI-SNR=17.55dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5578 SI-SNR=36.09dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.1829 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.07dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.9dB
+
+[48/100] Similar_Trot_00138_Cover_Timbre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.4942 SI-SNR=37.42dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5032 SI-SNR=29.27dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.4942 SI-SNR=37.37dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.4942 SI-SNR=37.42dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=35.67dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=35.68dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.59dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=-28.49dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.533 SI-SNR=19.26dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5112 SI-SNR=37.46dB
+  [TSM_1.1x] BER=0.25 BitAcc= DSR=1 MIoU=0.1179 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=9.62dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=1.76dB
+
+[49/100] Similar_Trot_00138_Cover_Timbre_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.43dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=29.28dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.34dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.43dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.13dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.13dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.91dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-18.75dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4773 SI-SNR=18.11dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6162 SI-SNR=37.4dB
+  [TSM_1.1x] BER=0.1875 BitAcc= DSR=1 MIoU=0.1155 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.67dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.13dB
+
+[50/100] Similar_Trot_00138_Org.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.34dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5206 SI-SNR=29.32dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.91dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.34dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.73dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.73dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.56dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4625 SI-SNR=-4.44dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.468 SI-SNR=18.16dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6162 SI-SNR=37.32dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.284 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=4.98dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-10.87dB
+
+[51/100] Similar_Trot_00162_Cover_Arrangement_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.45dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=29.28dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.13dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.45dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.0dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.0dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.12dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=-26.83dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=20.3dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5668 SI-SNR=37.45dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.302 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=9.35dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=0.76dB
+
+[52/100] Similar_Trot_00162_Cover_Genre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5545 SI-SNR=36.71dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=29.17dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=35.85dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=36.71dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=30.31dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=30.3dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=30.9dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-16.46dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4301 SI-SNR=17.51dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5414 SI-SNR=36.74dB
+  [TSM_1.1x] BER=1.0 BitAcc= DSR=0 MIoU=0.0556 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.32dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.58dB
+
+[53/100] Similar_Trot_00162_Cover_Instrument_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.66dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.3648 SI-SNR=29.31dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.54dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=28.7dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.32dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.32dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.7dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=-14.34dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=20.09dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5414 SI-SNR=37.68dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3599 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.66dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.16dB
+
+[54/100] Similar_Trot_00162_Cover_Instrument_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.72dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.432 SI-SNR=29.32dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.51dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.13dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.41dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.4dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.1dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5821 SI-SNR=-11.1dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5107 SI-SNR=19.79dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5023 SI-SNR=37.7dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3391 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.03dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-1.21dB
+
+[55/100] Similar_Trot_00162_Cover_Rhythm_B.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=36.61dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=29.13dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.5dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.61dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.33dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=29.32dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=30.84dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=-24.89dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=17.12dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5519 SI-SNR=36.59dB
+  [TSM_1.1x] BER=0.125 BitAcc= DSR=1 MIoU=0.2352 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=5.28dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=0.51dB
+
+[56/100] Similar_Trot_00162_Cover_Tempo_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.4994 SI-SNR=37.3dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4176 SI-SNR=29.26dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=37.12dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=35.38dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=34.73dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=34.72dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4994 SI-SNR=33.79dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.6262 SI-SNR=-13.04dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4773 SI-SNR=19.37dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4937 SI-SNR=37.22dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.4041 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.3dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-0.1dB
+
+[57/100] Similar_Trot_00162_Cover_Tempo_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.75dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.357 SI-SNR=29.33dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.21dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.48dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.58dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.58dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=32.11dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5651 SI-SNR=-16.69dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4055 SI-SNR=19.87dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5215 SI-SNR=37.97dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3775 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.23dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=0.63dB
+
+[58/100] Similar_Trot_00162_Cover_Timbre_A.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.98dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4726 SI-SNR=29.35dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.74dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=36.99dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.34dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.34dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.31dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5733 SI-SNR=-9.31dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4773 SI-SNR=19.72dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4317 SI-SNR=37.92dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3469 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=7.46dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-2.14dB
+
+[59/100] Similar_Trot_00162_Cover_Timbre_C.wav
+  [OK] 임베딩 완료 (원본 sr=44100 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=38.04dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4193 SI-SNR=29.36dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.79dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=35.52dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.38dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=33.38dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.14dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=-10.39dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.4871 SI-SNR=19.87dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5215 SI-SNR=38.2dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.2844 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=8.01dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=-1.48dB
+
+[60/100] Similar_Trot_00162_Org.wav
+  [OK] 임베딩 완료 (원본 sr=48000 -> 16kHz, 9.0초, encoded=8 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.527 SI-SNR=37.86dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.5967 SI-SNR=29.34dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=37.28dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.6dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.66dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=31.66dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=34.45dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5545 SI-SNR=-25.23dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.527 SI-SNR=20.23dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5286 SI-SNR=37.91dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3518 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0556 SI-SNR=10.69dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0555 SI-SNR=2.96dB
+
+[61/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07802.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.5초, encoded=3 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5962 SI-SNR=35.88dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.2409 SI-SNR=28.98dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5962 SI-SNR=35.88dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5962 SI-SNR=35.88dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5962 SI-SNR=35.58dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5962 SI-SNR=35.58dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5962 SI-SNR=35.59dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.7104 SI-SNR=-11.61dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5962 SI-SNR=23.88dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4952 SI-SNR=36.67dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.6532 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0712 SI-SNR=8.16dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0712 SI-SNR=-6.77dB
+
+[62/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07811.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.4초, encoded=3 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5235 SI-SNR=35.89dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.0604 SI-SNR=29.03dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=35.88dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=35.89dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=34.78dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=34.78dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=35.75dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.2131 SI-SNR=-0.92dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=24.24dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.3905 SI-SNR=35.97dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.6652 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0604 SI-SNR=7.03dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0604 SI-SNR=-32.4dB
+
+[63/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07812.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.8초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.7911 SI-SNR=35.33dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.1448 SI-SNR=28.9dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.33dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.33dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.14dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.13dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.19dB
+  [TelephoneFilter] BER=0.125 BitAcc= DSR=1 MIoU=0.4158 SI-SNR=-2.73dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=25.68dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.7159 SI-SNR=34.08dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.8772 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=8.63dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=-35.04dB
+
+[64/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07814.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.2초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.8438 SI-SNR=37.34dB
+  [AWGN_30dB] BER=0.0 BitAcc= DSR=1 MIoU=0.4753 SI-SNR=29.29dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=37.33dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=37.34dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=35.38dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=35.33dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=36.51dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.874 SI-SNR=-2.0dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=21.7dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.8082 SI-SNR=37.01dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.8741 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1915 SI-SNR=6.03dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1915 SI-SNR=-26.2dB
+
+[65/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07820.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.4초, encoded=3 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5235 SI-SNR=35.23dB
+  [AWGN_30dB] BER=0.125 BitAcc= DSR=1 MIoU=0.2074 SI-SNR=28.88dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=35.23dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=35.23dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=34.98dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=34.97dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=35.07dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5909 SI-SNR=-4.9dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5909 SI-SNR=26.23dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4015 SI-SNR=35.66dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.5167 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0604 SI-SNR=8.61dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0604 SI-SNR=-16.26dB
+
+[66/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07822.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.4초, encoded=3 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5235 SI-SNR=36.72dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.0604 SI-SNR=29.16dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=36.74dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=36.72dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=36.5dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=36.5dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=36.06dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5829 SI-SNR=-4.28dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5235 SI-SNR=25.19dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.5738 SI-SNR=36.62dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.5003 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0604 SI-SNR=8.81dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0604 SI-SNR=-23.77dB
+
+[67/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07826.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.3초, encoded=3 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5795 SI-SNR=35.28dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.0492 SI-SNR=28.82dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.28dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.28dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.22dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.22dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.18dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.3604 SI-SNR=-8.64dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=25.25dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.4248 SI-SNR=35.3dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.3819 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0492 SI-SNR=10.23dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0492 SI-SNR=-10.9dB
+
+[68/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07834.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.3초, encoded=3 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.5795 SI-SNR=35.96dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.3739 SI-SNR=29.0dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.96dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.96dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=34.99dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=34.91dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=35.47dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.5562 SI-SNR=-3.89dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.5795 SI-SNR=23.3dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6043 SI-SNR=35.63dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.3604 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0492 SI-SNR=6.94dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0492 SI-SNR=-18.6dB
+
+[69/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07836.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.0초, encoded=1 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.8632 SI-SNR=36.73dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.9068 SI-SNR=29.24dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=36.72dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=36.73dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=36.21dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=36.22dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=35.87dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.9068 SI-SNR=-1.18dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=21.65dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.7571 SI-SNR=38.18dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.813 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.2558 SI-SNR=6.91dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.2558 SI-SNR=-16.7dB
+
+[70/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07838.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.2초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.814 SI-SNR=36.82dB
+  [AWGN_30dB] BER=0.125 BitAcc= DSR=1 MIoU=0.4928 SI-SNR=29.12dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.814 SI-SNR=36.82dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.814 SI-SNR=36.82dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.814 SI-SNR=34.63dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.814 SI-SNR=34.52dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=36.32dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.874 SI-SNR=-2.79dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8438 SI-SNR=21.95dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.8082 SI-SNR=36.61dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.8408 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1915 SI-SNR=6.14dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1915 SI-SNR=-27.94dB
+
+[71/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07840.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.6초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.721 SI-SNR=36.96dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.1093 SI-SNR=29.25dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=36.96dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=36.96dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=36.74dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=36.74dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=36.54dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.4072 SI-SNR=-10.06dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=26.81dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.7072 SI-SNR=37.35dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.7155 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1093 SI-SNR=9.89dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1093 SI-SNR=-9.1dB
+
+[72/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07843.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.5초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.6808 SI-SNR=37.36dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.0958 SI-SNR=29.27dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.6808 SI-SNR=37.36dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.6808 SI-SNR=37.36dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6808 SI-SNR=37.26dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6808 SI-SNR=37.26dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6808 SI-SNR=37.04dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.7436 SI-SNR=-2.13dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6808 SI-SNR=27.05dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6343 SI-SNR=37.36dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.6744 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0958 SI-SNR=8.67dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0958 SI-SNR=-30.73dB
+
+[73/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07845.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.1초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.8278 SI-SNR=35.77dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.4904 SI-SNR=28.98dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.8278 SI-SNR=35.78dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.8278 SI-SNR=35.77dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8278 SI-SNR=35.74dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8278 SI-SNR=35.75dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8278 SI-SNR=35.54dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.8951 SI-SNR=-4.37dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8278 SI-SNR=27.11dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.8488 SI-SNR=35.74dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.8245 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1744 SI-SNR=9.8dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1744 SI-SNR=-25.01dB
+
+[74/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07847.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.2초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.6213 SI-SNR=37.87dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.2866 SI-SNR=29.31dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.6213 SI-SNR=37.87dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.6213 SI-SNR=37.87dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6213 SI-SNR=37.7dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6213 SI-SNR=37.7dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6213 SI-SNR=37.27dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.6846 SI-SNR=-3.73dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6213 SI-SNR=25.95dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.3255 SI-SNR=37.91dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.3176 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0492 SI-SNR=8.08dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.0492 SI-SNR=-20.14dB
+
+[75/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07849.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.0초, encoded=1 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.8632 SI-SNR=40.34dB
+  [AWGN_30dB] BER=0.125 BitAcc= DSR=1 MIoU=0.9068 SI-SNR=29.61dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=40.34dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=40.34dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=40.15dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=40.15dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=39.27dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.9068 SI-SNR=0.05dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8632 SI-SNR=27.21dB
+  [Crop_10pct] BER=1.0 BitAcc= DSR=0 MIoU=0.2842 SI-SNR=41.41dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.813 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.2558 SI-SNR=7.99dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.2558 SI-SNR=-15.21dB
+
+[76/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07851.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.6초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.721 SI-SNR=35.78dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.1093 SI-SNR=29.0dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=35.78dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=35.78dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=35.01dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=35.02dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.6666 SI-SNR=34.09dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.7758 SI-SNR=-9.25dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.721 SI-SNR=21.21dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.7167 SI-SNR=34.53dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.6558 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1093 SI-SNR=6.57dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1093 SI-SNR=-8.87dB
+
+[77/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07853.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 3.0초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.8177 SI-SNR=36.23dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.1651 SI-SNR=29.08dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.8177 SI-SNR=36.19dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.8177 SI-SNR=36.23dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8177 SI-SNR=34.74dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8177 SI-SNR=34.75dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8177 SI-SNR=35.97dB
+  [TelephoneFilter] BER=1.0 BitAcc= DSR=0 MIoU=0.1651 SI-SNR=-3.74dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.8177 SI-SNR=25.86dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.8536 SI-SNR=36.79dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.7757 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1651 SI-SNR=7.61dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1651 SI-SNR=-23.97dB
+
+[78/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_07855.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.8초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.7911 SI-SNR=35.09dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.1448 SI-SNR=28.82dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.09dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.09dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=34.34dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=34.35dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=34.71dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.8379 SI-SNR=2.65dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=24.08dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.757 SI-SNR=35.45dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.699 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=5.76dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=-6.76dB
+
+[79/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_08316.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.8초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.7508 SI-SNR=37.46dB
+  [AWGN_30dB] BER=0.0625 BitAcc= DSR=1 MIoU=0.4369 SI-SNR=29.27dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.7508 SI-SNR=37.46dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.7508 SI-SNR=37.46dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7508 SI-SNR=36.08dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7508 SI-SNR=36.07dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.74dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.8319 SI-SNR=-12.37dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=25.46dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.6663 SI-SNR=37.51dB
+  [TSM_1.1x] BER=0.0625 BitAcc= DSR=1 MIoU=0.474 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=9.18dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=-6.84dB
+
+[80/100] 일반남여_일반통합06_F_1524374974_25_수도권_실내_08318.wav
+  [OK] 임베딩 완료 (원본 sr=16000 -> 16kHz, 2.8초, encoded=2 skip=0)
+  [NoAttack]  BER=0.0 NC=1.0 DSR=1 MIoU=0.7911 SI-SNR=37.01dB
+  [AWGN_30dB] BER=1.0 BitAcc= DSR=0 MIoU=0.1448 SI-SNR=29.2dB
+  [Resample_44100RT] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=37.0dB
+  [Limiter] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=37.01dB
+  [MP3_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.81dB
+  [MP3_320kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=35.8dB
+  [AAC_128kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=36.56dB
+  [TelephoneFilter] BER=0.0 BitAcc= DSR=1 MIoU=0.7987 SI-SNR=-6.49dB
+  [Opus_32kbps] BER=0.0 BitAcc= DSR=1 MIoU=0.7911 SI-SNR=23.68dB
+  [Crop_10pct] BER=0.0 BitAcc= DSR=1 MIoU=0.8409 SI-SNR=36.29dB
+  [TSM_1.1x] BER=0.0 BitAcc= DSR=1 MIoU=0.7428 SI-SNR=dB
+  [EnCodec_6kbps] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=6.88dB
+  [DAC] BER=1.0 BitAcc=0.0 DSR=0 MIoU=0.1448 SI-SNR=-12.82dB
+
+[81/100] 통화 7727-0029.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7727-0029.wav
+
+[82/100] 통화 7728-0017.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7728-0017.wav
+
+[83/100] 통화 7728-0022.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7728-0022.wav
+
+[84/100] 통화 7728-0038.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7728-0038.wav
+
+[85/100] 통화 7729-0014.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7729-0014.wav
+
+[86/100] 통화 7729-0018.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7729-0018.wav
+
+[87/100] 통화 7729-0020.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7729-0020.wav
+
+[88/100] 통화 7729-0025.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7729-0025.wav
+
+[89/100] 통화 7729-0027.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7729-0027.wav
+
+[90/100] 통화 7732-0011.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7732-0011.wav
+
+[91/100] 통화 7732-0024.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7732-0024.wav
+
+[92/100] 통화 7751-0017.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7751-0017.wav
+
+[93/100] 통화 7751-0024.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7751-0024.wav
+
+[94/100] 통화 7755-0009.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7755-0009.wav
+
+[95/100] 통화 7755-0016.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7755-0016.wav
+
+[96/100] 통화 7756-0007.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7756-0007.wav
+
+[97/100] 통화 7756-0014.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7756-0014.wav
+
+[98/100] 통화 7756-0030.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7756-0030.wav
+
+[99/100] 통화 7761-0025.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7761-0025.wav
+
+[100/100] 통화 7763-0020.wav
+  [WARN]  길이가 너무 짧아 스킵 (>= 1.1초 필요): 통화 7763-0020.wav
+
+============================================================
+  전체 파이프라인 완료
+============================================================
+  단계                   BER      DSR      MIoU     판정
+  -------------------------------------------------------
+  NoAttack                      100.0%     0.5737   통과
+  AWGN_30dB            0.1414   87.5%     0.4105   붕괴
+  Resample_44100RT              100.0%     0.5737   통과
+  Limiter                       100.0%     0.5736   통과
+  MP3_128kbps                   100.0%     0.5754   통과
+  MP3_320kbps                   100.0%     0.5754   통과
+  AAC_128kbps                   100.0%     0.5745   통과
+  TelephoneFilter      0.0148   98.8%     0.5511   통과
+  Opus_32kbps          0.0266   98.8%     0.4416   통과
+  Crop_10pct           0.0125   98.8%     0.565    통과
+  TSM_1.1x             0.0617   97.5%     0.3851   통과
+  EnCodec_6kbps        1.0      0.0%     0.0733   붕괴
+  DAC                  1.0      0.0%     0.0732   붕괴
+============================================================
+  전체 결과 CSV : /home/hansung1/.vscode-server/audio/wavmark_pipeline_results_clip9s/pipeline_full_results.csv
+  요약 CSV      : /home/hansung1/.vscode-server/audio/wavmark_pipeline_results_clip9s/pipeline_full_summary.csv
+  콘텐츠 특성 CSV: /home/hansung1/.vscode-server/audio/wavmark_pipeline_results_clip9s/content_features.csv
+  임베딩 결과   : /home/hansung1/.vscode-server/audio/wavmark_embed_clip9s
+  16k 원본      : /home/hansung1/.vscode-server/audio/wavmark_pipeline_results_clip9s/original_16k_mono
+  차이 스펙트로그램(1040개): /home/hansung1/.vscode-server/audio/wavmark_pipeline_results_clip9s/diff_spectrograms
+  MUSHRA 청취용 파일 (수동 평가 필요): /home/hansung1/.vscode-server/audio/wavmark_pipeline_results_clip9s/mushra_stimuli
+============================================================

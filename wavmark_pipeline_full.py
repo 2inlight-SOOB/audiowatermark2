@@ -173,6 +173,38 @@ def compute_odg(ref, deg, sr):
 
 
 # ------------------------------------------------------------
+#  PESQ (선택적 — 설치돼 있을 때만 계산, 없으면 자동 스킵)
+#  ODG(PEAQ)의 실질적인 대체 지표. wideband 모드는 16kHz 입력을 요구한다.
+# ------------------------------------------------------------
+try:
+    from pesq import pesq as _pesq_fn
+
+    PESQ_AVAILABLE = True
+except Exception as e:
+    PESQ_AVAILABLE = False
+    print(f"PESQ 미사용 (미설치): {e}")
+
+
+def compute_pesq(ref, deg, sr):
+    if not PESQ_AVAILABLE:
+        return None
+    try:
+        if sr == 16000:
+            r, d, pesq_sr, mode = ref, deg, 16000, "wb"
+        elif sr == 8000:
+            r, d, pesq_sr, mode = ref, deg, 8000, "nb"
+        else:
+            pesq_sr, mode = 16000, "wb"
+            r = librosa.resample(ref, orig_sr=sr, target_sr=pesq_sr)
+            d = librosa.resample(deg, orig_sr=sr, target_sr=pesq_sr)
+        n = min(len(r), len(d))
+        return float(_pesq_fn(pesq_sr, r[:n].astype(np.float32), d[:n].astype(np.float32), mode))
+    except Exception as e:
+        print(f"    PESQ 계산 실패: {e}")
+        return None
+
+
+# ------------------------------------------------------------
 #  EnCodec / DAC (선택적 — 설치돼 있으면 축3 공격에 자동 추가)
 # ------------------------------------------------------------
 try:
@@ -532,21 +564,30 @@ def attack_limiter(wm, sr, threshold_db, attack_ms=5, release_ms=50):
     return np.clip(wm * gain, -1.0, 1.0).astype(np.float32)
 
 
-def attack_crop_with_mask(wm, mask, ratio):
+def attack_crop_with_mask(wm, mask, orig, ratio):
+    """Crop은 원본에서도 같은 구간을 잘라내면 시간축이 샘플 단위로 다시 맞으므로,
+    잘라낸 원본을 품질 지표(SI-SNR/ViSQOL/PESQ)의 기준 신호로 함께 반환한다."""
     n = len(wm)
     cut_len = int(n * ratio)
     start = np.random.randint(0, max(1, n - cut_len))
     audio_out = np.concatenate([wm[:start], wm[start + cut_len:]]).astype(np.float32)
     mask_out = np.concatenate([mask[:start], mask[start + cut_len:]])
-    return audio_out, mask_out
+    n_orig = len(orig)
+    start_o = min(start, max(0, n_orig - cut_len))
+    orig_aligned = np.concatenate([orig[:start_o], orig[start_o + cut_len:]]).astype(np.float32)
+    return audio_out, mask_out, orig_aligned, audio_out, True   # 샘플 단위 정합 -> SI-SNR도 신뢰 가능
 
 
-def attack_tsm_with_mask(wm, mask, rate):
+def attack_tsm_with_mask(wm, mask, orig, rate):
+    """TSM은 알려진 배속을 역재생하면 길이는 복원되지만 phase vocoder 특성상 구간별
+    위상 밀림이 남아 샘플 단위 정렬은 보장되지 않는다. de-warp한 신호로 ViSQOL/PESQ는
+    계산하되, 정렬에 극도로 민감한 SI-SNR은 신뢰할 수 없다고 표시한다."""
     audio_out = librosa.effects.time_stretch(wm, rate=rate).astype(np.float32)
     n_out = len(audio_out)
     idx = np.round(np.linspace(0, len(mask) - 1, n_out)).astype(int)
     mask_out = mask[idx]
-    return audio_out, mask_out
+    dewarped = librosa.effects.time_stretch(audio_out, rate=1.0 / rate).astype(np.float32)
+    return audio_out, mask_out, orig, dewarped, False   # SI-SNR 신뢰 불가 (국소 위상 밀림)
 
 
 def build_attacks():
@@ -569,9 +610,9 @@ def build_attacks():
     attacks.append({"name": f"Opus_{OPUS_BITRATE_KBPS}kbps", "axis": "axis2", "desync": False,
                     "fn": lambda wm: attack_opus(wm, SAMPLE_RATE, OPUS_BITRATE_KBPS)})
     attacks.append({"name": f"Crop_{int(CROP_RATIO*100)}pct", "axis": "axis2", "desync": True, "combined": True,
-                     "fn": lambda wm, mask: attack_crop_with_mask(wm, mask, CROP_RATIO)})
+                     "fn": lambda wm, mask, orig: attack_crop_with_mask(wm, mask, orig, CROP_RATIO)})
     attacks.append({"name": f"TSM_{TSM_RATE}x", "axis": "axis2", "desync": True, "combined": True,
-                     "fn": lambda wm, mask: attack_tsm_with_mask(wm, mask, TSM_RATE)})
+                     "fn": lambda wm, mask, orig: attack_tsm_with_mask(wm, mask, orig, TSM_RATE)})
     # ---- 축3: 뉴럴 코덱, 설치된 경우에만 자동 추가 ----
     attacks.append({"name": "EnCodec_6kbps", "axis": "axis3", "desync": False,
                     "fn": lambda wm: attack_encodec(wm, SAMPLE_RATE)})
@@ -601,19 +642,25 @@ AXIS_POLICY = {
 
 def build_row(rel_name, stage, axis, orig16k, mask_gt, attacked_audio, model,
               payload_bits, desync, content_features, spec_out=None,
-              mushra_out_dir=None):
+              mushra_out_dir=None, quality_ref=None, quality_deg=None,
+              sisnr_reliable=True):
+    """quality_ref/quality_deg: Crop/TSM처럼 시간축이 어긋나는 공격에서, 탐지에는 그대로의
+    attacked_audio를 쓰되 SI-SNR/ViSQOL/PESQ 계산에는 시간정렬된 신호 쌍을 별도로 넘긴다.
+    sisnr_reliable=False면(TSM처럼 국소 위상 밀림이 남는 경우) ViSQOL/PESQ는 계산하되
+    정렬에 극도로 민감한 SI-SNR만 비워 둔다."""
     policy = dict(AXIS_POLICY[axis])
+    can_measure_quality = (not desync) or (quality_ref is not None and quality_deg is not None)
     if desync:
-        policy["si_snr"] = False
-        policy["visqol"] = False
-        policy["diff_spec"] = False
+        policy["diff_spec"] = policy["diff_spec"] and can_measure_quality
+        if not sisnr_reliable:
+            policy["si_snr"] = False
 
     ber, nc, dsr, hit_ratio, results = decode_and_measure(model, attacked_audio, payload_bits)
 
     row = {
         "file": rel_name, "stage": stage, "axis": axis,
         "BER": "", "NC": "", "BitAccuracy": "", "DSR": dsr, "hit_ratio": round(hit_ratio, 4),
-        "SI-SNR(dB)": "", "ViSQOL": "", "ODG": "",
+        "SI-SNR(dB)": "", "ViSQOL": "", "PESQ": "", "ODG": "",
         "IoU": "", "MIoU": "", "F1": "", "MUSHRA": "",
         "SpectralFlatness": round(content_features["SpectralFlatness"], 6),
         "SpectralCentroid_Hz": round(content_features["SpectralCentroid_Hz"], 2),
@@ -628,17 +675,22 @@ def build_row(rel_name, stage, axis, orig16k, mask_gt, attacked_audio, model,
     if policy["bit_accuracy"]:
         row["BitAccuracy"] = round(1.0 - ber, 4)
 
-    min_len = min(len(orig16k), len(attacked_audio))
-    if policy["si_snr"]:
-        row["SI-SNR(dB)"] = round(si_snr(orig16k[:min_len], attacked_audio[:min_len]), 2)
-    if policy["visqol"]:
-        v = compute_visqol(orig16k[:min_len], attacked_audio[:min_len], SAMPLE_RATE)
+    ref_q = quality_ref if quality_ref is not None else orig16k
+    deg_q = quality_deg if quality_deg is not None else attacked_audio
+    min_len = min(len(ref_q), len(deg_q))
+    if policy["si_snr"] and can_measure_quality:
+        row["SI-SNR(dB)"] = round(si_snr(ref_q[:min_len], deg_q[:min_len]), 2)
+    if policy["visqol"] and can_measure_quality:
+        v = compute_visqol(ref_q[:min_len], deg_q[:min_len], SAMPLE_RATE)
         row["ViSQOL"] = round(v, 3) if v is not None else ""
-    if policy["odg"]:
-        o = compute_odg(orig16k[:min_len], attacked_audio[:min_len], SAMPLE_RATE)
+    if can_measure_quality:
+        p = compute_pesq(ref_q[:min_len], deg_q[:min_len], SAMPLE_RATE)
+        row["PESQ"] = round(p, 3) if p is not None else ""
+    if policy["odg"] and can_measure_quality:
+        o = compute_odg(ref_q[:min_len], deg_q[:min_len], SAMPLE_RATE)
         row["ODG"] = round(o, 3) if o is not None else ""
     if spec_out is not None and policy["diff_spec"]:
-        save_diff_spectrogram(orig16k[:min_len], attacked_audio[:min_len], SAMPLE_RATE, spec_out)
+        save_diff_spectrogram(ref_q[:min_len], deg_q[:min_len], SAMPLE_RATE, spec_out)
 
     if policy["miou"]:
         pred_mask = build_pred_mask(len(attacked_audio), results)
@@ -720,7 +772,7 @@ def main():
     print("=" * 60)
 
     fieldnames = ["file", "stage", "axis", "BER", "NC", "BitAccuracy", "DSR", "hit_ratio",
-                  "SI-SNR(dB)", "ViSQOL", "ODG", "IoU", "MIoU", "F1", "MUSHRA",
+                  "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG", "IoU", "MIoU", "F1", "MUSHRA",
                   "SpectralFlatness", "SpectralCentroid_Hz", "EffectiveBandwidth99_Hz",
                   "SilenceRatio", "CrestFactor"]
     csv_path = RESULT_DIR / "pipeline_full_results.csv"
@@ -825,8 +877,11 @@ def main():
             for atk in attacks:
                 wait_for_safe_temp()
                 try:
+                    quality_ref = quality_deg = None
+                    sisnr_reliable = True
                     if atk.get("combined"):
-                        attacked, mask_for_stage = atk["fn"](wm16, gt_mask)
+                        attacked, mask_for_stage, quality_ref, quality_deg, sisnr_reliable = \
+                            atk["fn"](wm16, gt_mask, orig16k)
                     else:
                         attacked = atk["fn"](wm16)
                         mask_for_stage = gt_mask
@@ -844,7 +899,9 @@ def main():
                     row = build_row(str(rel), atk["name"], atk["axis"], orig16k, mask_for_stage,
                                      attacked, model, payload, desync=atk["desync"],
                                      content_features=content_features, spec_out=spec_out,
-                                     mushra_out_dir=mushra_dir)
+                                     mushra_out_dir=mushra_dir,
+                                     quality_ref=quality_ref, quality_deg=quality_deg,
+                                     sisnr_reliable=sisnr_reliable)
                     all_rows.append(row)
                     print(f"  [{atk['name']}] BER={row['BER']} BitAcc={row['BitAccuracy']} "
                           f"DSR={row['DSR']} MIoU={row['MIoU']} SI-SNR={row['SI-SNR(dB)']}dB")
@@ -897,6 +954,7 @@ def main():
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(numeric("SI-SNR(dB)"))), 2) if numeric("SI-SNR(dB)") else "",
             "평균ViSQOL": round(float(np.mean(numeric("ViSQOL"))), 3) if numeric("ViSQOL") else "",
+            "평균PESQ": round(float(np.mean(numeric("PESQ"))), 3) if numeric("PESQ") else "",
             "평균MIoU": round(float(np.mean(numeric("MIoU"))), 4) if numeric("MIoU") else "",
             "평균F1": round(float(np.mean(numeric("F1"))), 4) if numeric("F1") else "",
             "판정": "통과" if dsr_rate >= DSR_PASS_RATE else "붕괴",

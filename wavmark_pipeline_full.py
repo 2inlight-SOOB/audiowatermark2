@@ -86,7 +86,7 @@ INPUT_DIR  = AUDIO_ROOT / "original"
 # 오래 걸림). None이면 전체 길이 그대로 처리. 이미 N초보다 짧은 파일은 그대로 둠.
 # 이 값이 설정되면 wavmark_new_embed.py가 만든 전체 길이 embed 결과를 덮어쓰지
 # 않도록 별도 폴더(_clip{N}s)에 저장한다.
-TEST_CLIP_SECONDS = 9
+TEST_CLIP_SECONDS = 10   # 리뷰 반영: 4종 평가 길이를 10초로 통일 (기존 9초)
 _SUFFIX = "" if TEST_CLIP_SECONDS is None else f"_clip{TEST_CLIP_SECONDS}s"
 
 EMBED_DIR   = AUDIO_ROOT / f"wavmark_embed{_SUFFIX}"
@@ -123,7 +123,11 @@ MAX_SPECTROGRAM_SAVE  = None   # 저장 개수 제한. None이면 무제한
 # 공격 파라미터
 MP3_BITRATES          = [128, 320]
 AAC_BITRATE_KBPS      = 128
-RESAMPLE_ROUNDTRIP_SR = 44100
+# 리뷰 반영: 리샘플링 공격을 '난이도 동일'한 두 조건으로 분리 (기존 단일 44.1k 왕복 대체)
+#   down8k : sr -> 8kHz -> sr   (4kHz 이상 손실, 4종 공통 고난이도. 대역제한과 성격이 겹치므로 논문에서 구분 서술)
+#   up48k  : sr -> 48kHz -> sr  (거의 무손실, 정상 동작 확인용)
+RESAMPLE_DOWN_SR      = 8000
+RESAMPLE_UP_SR        = 48000
 CROP_RATIO            = 0.10
 TSM_RATE              = 1.10
 AWGN_SNR_DB           = 30
@@ -427,8 +431,10 @@ def decode_and_measure(model, audio, payload_bits):
         ber = float(np.mean(decoded_bits != payload_bits))
         nc = normalized_correlation(payload_bits, decoded_bits)
     else:
-        ber = 1.0
-        nc = -1.0
+        # 리뷰 반영: 디코딩 실패 시 BER=1.0/NC=-1.0 대체값을 넣지 않고 NaN으로 둔다.
+        # (실패를 실제 BER 분포에 섞어 평균을 왜곡하지 않기 위함)
+        ber = float("nan")
+        nc = float("nan")
 
     dsr = 1 if detected else 0
     hit_ratio = len(results) / total_windows(len(audio))
@@ -595,8 +601,10 @@ def build_attacks():
     # ---- 축1: 정렬 가능, ODG까지 계산 ----
     attacks.append({"name": f"AWGN_{AWGN_SNR_DB}dB", "axis": "axis1", "desync": False,
                      "fn": lambda wm: attack_awgn(wm, AWGN_SNR_DB)})
-    attacks.append({"name": f"Resample_{RESAMPLE_ROUNDTRIP_SR}RT", "axis": "axis1", "desync": False,
-                     "fn": lambda wm: attack_resample_roundtrip(wm, SAMPLE_RATE, RESAMPLE_ROUNDTRIP_SR)})
+    attacks.append({"name": "Resample_down8k", "axis": "axis1", "desync": False,
+                     "fn": lambda wm: attack_resample_roundtrip(wm, SAMPLE_RATE, RESAMPLE_DOWN_SR)})
+    attacks.append({"name": "Resample_up48k", "axis": "axis1", "desync": False,
+                     "fn": lambda wm: attack_resample_roundtrip(wm, SAMPLE_RATE, RESAMPLE_UP_SR)})
     attacks.append({"name": "Limiter", "axis": "axis1", "desync": False,
                      "fn": lambda wm: attack_limiter(wm, SAMPLE_RATE, LIMITER_THRESHOLD_DB)})
     # ---- 축2: 압축/전화망 + 동기화 파괴, MIoU가 핵심 ----
@@ -609,6 +617,9 @@ def build_attacks():
                      "fn": lambda wm: attack_telephone(wm, SAMPLE_RATE)})
     attacks.append({"name": f"Opus_{OPUS_BITRATE_KBPS}kbps", "axis": "axis2", "desync": False,
                     "fn": lambda wm: attack_opus(wm, SAMPLE_RATE, OPUS_BITRATE_KBPS)})
+    # 리뷰 반영: 16kHz 3종(AudioSeal/SC-16/WavMark)에도 64kbps 추가 → 4종 × 동일 조건
+    attacks.append({"name": "Opus_64kbps", "axis": "axis2", "desync": False,
+                    "fn": lambda wm: attack_opus(wm, SAMPLE_RATE, 64)})
     attacks.append({"name": f"Crop_{int(CROP_RATIO*100)}pct", "axis": "axis2", "desync": True, "combined": True,
                      "fn": lambda wm, mask, orig: attack_crop_with_mask(wm, mask, orig, CROP_RATIO)})
     attacks.append({"name": f"TSM_{TSM_RATE}x", "axis": "axis2", "desync": True, "combined": True,
@@ -640,6 +651,9 @@ AXIS_POLICY = {
 }
 
 
+BER_SUCCESS_THRESHOLD = 0.1   # '성공' 판정 기준: 탐지 성공 AND BER <= 0.1
+
+
 def build_row(rel_name, stage, axis, orig16k, mask_gt, attacked_audio, model,
               payload_bits, desync, content_features, spec_out=None,
               mushra_out_dir=None, quality_ref=None, quality_deg=None,
@@ -657,9 +671,17 @@ def build_row(rel_name, stage, axis, orig16k, mask_gt, attacked_audio, model,
 
     ber, nc, dsr, hit_ratio, results = decode_and_measure(model, attacked_audio, payload_bits)
 
+    # ---- 공정 비교용 지표 (리뷰 반영): 탐지 성공 여부와 비트 복원을 분리 기록 ----
+    detect_fail = 0 if dsr == 1 else 1
+    _ber_valid = not np.isnan(ber)
+    ber_fair = float(ber) if (detect_fail == 0 and _ber_valid) else 0.5
+    success = 1 if (detect_fail == 0 and _ber_valid and ber <= BER_SUCCESS_THRESHOLD) else 0
+
     row = {
         "file": rel_name, "stage": stage, "axis": axis,
-        "BER": "", "NC": "", "BitAccuracy": "", "DSR": dsr, "hit_ratio": round(hit_ratio, 4),
+        "BER": "", "NC": "", "ber_raw": (round(ber, 4) if _ber_valid else ""),
+        "detect_fail": detect_fail, "ber_fair": round(ber_fair, 4), "success": success,
+        "BitAccuracy": "", "DSR": dsr, "hit_ratio": round(hit_ratio, 4),
         "SI-SNR(dB)": "", "ViSQOL": "", "PESQ": "", "ODG": "",
         "IoU": "", "MIoU": "", "F1": "", "MUSHRA": "",
         "SpectralFlatness": round(content_features["SpectralFlatness"], 6),
@@ -669,10 +691,10 @@ def build_row(rel_name, stage, axis, orig16k, mask_gt, attacked_audio, model,
         "CrestFactor": round(content_features["CrestFactor"], 4),
     }
 
-    if policy["ber_nc"]:
+    if policy["ber_nc"] and _ber_valid:
         row["BER"] = round(ber, 4)
         row["NC"] = round(nc, 4)
-    if policy["bit_accuracy"]:
+    if policy["bit_accuracy"] and _ber_valid:
         row["BitAccuracy"] = round(1.0 - ber, 4)
 
     ref_q = quality_ref if quality_ref is not None else orig16k
@@ -771,7 +793,7 @@ def main():
     print("   AudioSeal 대비 훨씬 오래 걸릴 수 있습니다.")
     print("=" * 60)
 
-    fieldnames = ["file", "stage", "axis", "BER", "NC", "BitAccuracy", "DSR", "hit_ratio",
+    fieldnames = ["file", "stage", "axis", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "BitAccuracy", "DSR", "hit_ratio",
                   "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG", "IoU", "MIoU", "F1", "MUSHRA",
                   "SpectralFlatness", "SpectralCentroid_Hz", "EffectiveBandwidth99_Hz",
                   "SilenceRatio", "CrestFactor"]
@@ -950,6 +972,8 @@ def main():
             "파일수": len(stage_rows),
             "평균BER": round(float(np.mean(numeric("BER"))), 4) if numeric("BER") else "",
             "평균BitAccuracy": round(float(np.mean(numeric("BitAccuracy"))), 4) if numeric("BitAccuracy") else "",
+            "평균BER_fair": round(float(np.mean(numeric("ber_fair"))), 4) if numeric("ber_fair") else "",
+            "성공률(%)": round(float(np.mean(numeric("success"))) * 100, 1) if numeric("success") else "",
             "평균NC": round(float(np.mean(numeric("NC"))), 4) if numeric("NC") else "",
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(numeric("SI-SNR(dB)"))), 2) if numeric("SI-SNR(dB)") else "",

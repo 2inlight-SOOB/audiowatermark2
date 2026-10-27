@@ -40,7 +40,7 @@ WM_ID            = "2inlightSOOB-0001"
 
 # 테스트용: 각 파일을 앞부분 N초만 잘라서 처리 (WavMark 디코딩이 느려서 전체 길이는
 # 오래 걸림). None이면 전체 길이 그대로 처리. 이미 N초보다 짧은 파일은 그대로 둠.
-TEST_CLIP_SECONDS = 9
+TEST_CLIP_SECONDS = 10   # 리뷰 반영: 4종 평가 길이를 10초로 통일 (기존 9초)
 RESULT_BASE = BASE / ("wavmark_pipeline_results" if TEST_CLIP_SECONDS is None
                        else f"wavmark_pipeline_results_clip{TEST_CLIP_SECONDS}s")
 STATE_PATH = BASE / "wavmark_pipeline_resume_state.json"

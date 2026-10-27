@@ -129,7 +129,11 @@ TEMP_POLL_SEC  = 10
 
 # 공격 파라미터
 MP3_BITRATES          = [128, 320]     # kbps
-RESAMPLE_ROUNDTRIP_SR = 44100          # 16k -> 44.1k -> 16k
+# 리뷰 반영: 리샘플링 공격을 '난이도 동일'한 두 조건으로 분리 (기존 단일 44.1k 왕복 대체)
+#   down8k : sr -> 8kHz -> sr   (4kHz 이상 손실, 4종 공통 고난이도. 대역제한과 성격이 겹치므로 논문에서 구분 서술)
+#   up48k  : sr -> 48kHz -> sr  (거의 무손실, 정상 동작 확인용)
+RESAMPLE_DOWN_SR      = 8000
+RESAMPLE_UP_SR        = 48000
 CROP_RATIO            = 0.10           # 10% 무작위 구간 절삭
 TSM_RATE              = 1.10           # 속도 10% 변조 (>1: 빨라짐)
 AWGN_SNR_DB           = 30
@@ -587,8 +591,10 @@ def build_attacks(sr):
     for br in MP3_BITRATES:
         attacks.append({"name": f"MP3_{br}kbps", "desync": False,
                          "fn": lambda wm, br=br: attack_mp3(wm, sr, br)})
-    attacks.append({"name": f"Resample_{RESAMPLE_ROUNDTRIP_SR}RT", "desync": False,
-                     "fn": lambda wm: attack_resample_roundtrip(wm, sr, RESAMPLE_ROUNDTRIP_SR)})
+    attacks.append({"name": "Resample_down8k", "desync": False,
+                     "fn": lambda wm: attack_resample_roundtrip(wm, sr, RESAMPLE_DOWN_SR)})
+    attacks.append({"name": "Resample_up48k", "desync": False,
+                     "fn": lambda wm: attack_resample_roundtrip(wm, sr, RESAMPLE_UP_SR)})
     attacks.append({"name": f"Crop_{int(CROP_RATIO*100)}pct", "desync": True, "combined": True,
                      "fn": lambda wm, mask, orig: attack_crop_with_mask(wm, mask, orig, CROP_RATIO)})
     attacks.append({"name": f"TSM_{TSM_RATE}x", "desync": True, "combined": True,
@@ -599,6 +605,9 @@ def build_attacks(sr):
                      "fn": lambda wm: attack_limiter(wm, sr, LIMITER_THRESHOLD_DB)})
     attacks.append({"name": f"Opus_{OPUS_BITRATE_KBPS}kbps", "desync": False,
                      "fn": lambda wm: attack_opus(wm, sr, OPUS_BITRATE_KBPS)})
+    # 리뷰 반영: 16kHz 3종(AudioSeal/SC-16/WavMark)에도 64kbps 추가 → 4종 × 동일 조건
+    attacks.append({"name": "Opus_64kbps", "desync": False,
+                     "fn": lambda wm: attack_opus(wm, sr, 64)})
     attacks.append({"name": f"AAC_{AAC_BITRATE_KBPS}kbps", "desync": False,
                     "fn": lambda wm: attack_aac(wm, sr, AAC_BITRATE_KBPS)})
     attacks.append({"name": "TelephoneFilter", "desync": False,
@@ -613,6 +622,9 @@ def build_attacks(sr):
 # ============================================================
 #  1개 파일에 대한 지표 1행 생성
 # ============================================================
+BER_SUCCESS_THRESHOLD = 0.1   # '성공' 판정 기준: 탐지 성공 AND BER <= 0.1
+
+
 def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
               desync, content_features, spec_out=None, quality_ref=None, quality_deg=None,
               sisnr_reliable=True):
@@ -622,6 +634,14 @@ def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
     정렬에 민감한 SI-SNR만 비워 둔다."""
     ber, nc, dsr, detect_prob, pred_mask = decode_and_measure(detector, attacked_audio, sr)
     loc = localization_metrics(mask_gt, pred_mask)
+
+    # ---- 공정 비교용 지표 (리뷰 반영): 탐지 성공 여부와 비트 복원을 분리 기록 ----
+    # AudioSeal은 항상 16비트를 복원하므로 ber_raw는 언제나 실제값(NaN 없음).
+    # detect_fail=1 인데 ber_raw가 낮은 경우가 바로 '탐지-비트 괴리'(C4) 신호다.
+    detect_fail = 0 if dsr == 1 else 1
+    _ber_valid = not np.isnan(ber)
+    ber_fair = float(ber) if (detect_fail == 0 and _ber_valid) else 0.5
+    success = 1 if (detect_fail == 0 and _ber_valid and ber <= BER_SUCCESS_THRESHOLD) else 0
 
     ref_q = quality_ref if quality_ref is not None else orig16k
     deg_q = quality_deg if quality_deg is not None else attacked_audio
@@ -645,6 +665,10 @@ def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
         "stage": stage,
         "BER": round(ber, 4),
         "NC": round(nc, 4),
+        "ber_raw": round(ber, 4) if _ber_valid else "",
+        "detect_fail": detect_fail,
+        "ber_fair": round(ber_fair, 4),
+        "success": success,
         "DSR": dsr,
         "detect_prob": round(detect_prob, 4),
         "SI-SNR(dB)": round(sisnr, 2) if sisnr is not None else "",
@@ -691,7 +715,7 @@ def main():
     spec_saved = 0
     all_rows = []
     content_rows = []
-    fieldnames = ["file", "stage", "BER", "NC", "DSR", "detect_prob", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
+    fieldnames = ["file", "stage", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "DSR", "detect_prob", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
                   "IoU", "MIoU", "F1", "SpectralFlatness", "SpectralCentroid_Hz",
                   "EffectiveBandwidth99_Hz", "SilenceRatio", "CrestFactor"]
     content_fieldnames = ["file", "SpectralFlatness", "SpectralCentroid_Hz",
@@ -816,12 +840,16 @@ def main():
         pesq_vals = [r["PESQ"] for r in stage_rows if r["PESQ"] != ""]
         miou_vals = [r["MIoU"] for r in stage_rows if r["MIoU"] != ""]
         f1_vals = [r["F1"] for r in stage_rows if r["F1"] != ""]
+        ber_fair_vals = [r["ber_fair"] for r in stage_rows if r["ber_fair"] != ""]
+        success_vals = [r["success"] for r in stage_rows if r["success"] != ""]
 
         dsr_rate = np.mean(dsr_vals) if dsr_vals else 0.0
         summary_rows.append({
             "stage": stage,
             "파일수": len(stage_rows),
             "평균BER": round(float(np.mean(ber_vals)), 4) if ber_vals else "",
+            "평균BER_fair": round(float(np.mean(ber_fair_vals)), 4) if ber_fair_vals else "",
+            "성공률(%)": round(float(np.mean(success_vals)) * 100, 1) if success_vals else "",
             "평균NC": round(float(np.mean(nc_vals)), 4) if nc_vals else "",
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(sisnr_vals)), 2) if sisnr_vals else "",

@@ -642,6 +642,8 @@ def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
     _ber_valid = not np.isnan(ber)
     ber_fair = float(ber) if (detect_fail == 0 and _ber_valid) else 0.5
     success = 1 if (detect_fail == 0 and _ber_valid and ber <= BER_SUCCESS_THRESHOLD) else 0
+    # 리뷰 반영: BER=0 완전복원 (페이로드 비트수가 4종이 달라 BER<=0.1 허용오류 개수가 다른 문제 보완용 보조 기준)
+    exact_match = 1 if (_ber_valid and ber == 0.0) else 0
 
     ref_q = quality_ref if quality_ref is not None else orig16k
     deg_q = quality_deg if quality_deg is not None else attacked_audio
@@ -669,6 +671,7 @@ def build_row(rel_name, stage, orig16k, mask_gt, attacked_audio, detector, sr,
         "detect_fail": detect_fail,
         "ber_fair": round(ber_fair, 4),
         "success": success,
+        "exact_match": exact_match,
         "DSR": dsr,
         "detect_prob": round(detect_prob, 4),
         "SI-SNR(dB)": round(sisnr, 2) if sisnr is not None else "",
@@ -715,7 +718,7 @@ def main():
     spec_saved = 0
     all_rows = []
     content_rows = []
-    fieldnames = ["file", "stage", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "DSR", "detect_prob", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
+    fieldnames = ["file", "stage", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "exact_match", "DSR", "detect_prob", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
                   "IoU", "MIoU", "F1", "SpectralFlatness", "SpectralCentroid_Hz",
                   "EffectiveBandwidth99_Hz", "SilenceRatio", "CrestFactor"]
     content_fieldnames = ["file", "SpectralFlatness", "SpectralCentroid_Hz",
@@ -842,6 +845,7 @@ def main():
         f1_vals = [r["F1"] for r in stage_rows if r["F1"] != ""]
         ber_fair_vals = [r["ber_fair"] for r in stage_rows if r["ber_fair"] != ""]
         success_vals = [r["success"] for r in stage_rows if r["success"] != ""]
+        exact_vals = [r["exact_match"] for r in stage_rows if r["exact_match"] != ""]
 
         dsr_rate = np.mean(dsr_vals) if dsr_vals else 0.0
         summary_rows.append({
@@ -850,6 +854,7 @@ def main():
             "평균BER": round(float(np.mean(ber_vals)), 4) if ber_vals else "",
             "평균BER_fair": round(float(np.mean(ber_fair_vals)), 4) if ber_fair_vals else "",
             "성공률(%)": round(float(np.mean(success_vals)) * 100, 1) if success_vals else "",
+            "정확복원률(%)": round(float(np.mean(exact_vals)) * 100, 1) if exact_vals else "",
             "평균NC": round(float(np.mean(nc_vals)), 4) if nc_vals else "",
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(sisnr_vals)), 2) if sisnr_vals else "",

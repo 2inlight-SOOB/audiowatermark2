@@ -676,11 +676,14 @@ def build_row(rel_name, stage, axis, orig16k, mask_gt, attacked_audio, model,
     _ber_valid = not np.isnan(ber)
     ber_fair = float(ber) if (detect_fail == 0 and _ber_valid) else 0.5
     success = 1 if (detect_fail == 0 and _ber_valid and ber <= BER_SUCCESS_THRESHOLD) else 0
+    # 리뷰 반영: BER=0 완전복원 (페이로드 비트수가 4종이 달라 BER<=0.1 허용오류 개수가 다른 문제 보완용 보조 기준)
+    exact_match = 1 if (_ber_valid and ber == 0.0) else 0
 
     row = {
         "file": rel_name, "stage": stage, "axis": axis,
         "BER": "", "NC": "", "ber_raw": (round(ber, 4) if _ber_valid else ""),
         "detect_fail": detect_fail, "ber_fair": round(ber_fair, 4), "success": success,
+        "exact_match": exact_match,
         "BitAccuracy": "", "DSR": dsr, "hit_ratio": round(hit_ratio, 4),
         "SI-SNR(dB)": "", "ViSQOL": "", "PESQ": "", "ODG": "",
         "IoU": "", "MIoU": "", "F1": "", "MUSHRA": "",
@@ -793,7 +796,7 @@ def main():
     print("   AudioSeal 대비 훨씬 오래 걸릴 수 있습니다.")
     print("=" * 60)
 
-    fieldnames = ["file", "stage", "axis", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "BitAccuracy", "DSR", "hit_ratio",
+    fieldnames = ["file", "stage", "axis", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "exact_match", "BitAccuracy", "DSR", "hit_ratio",
                   "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG", "IoU", "MIoU", "F1", "MUSHRA",
                   "SpectralFlatness", "SpectralCentroid_Hz", "EffectiveBandwidth99_Hz",
                   "SilenceRatio", "CrestFactor"]
@@ -974,6 +977,7 @@ def main():
             "평균BitAccuracy": round(float(np.mean(numeric("BitAccuracy"))), 4) if numeric("BitAccuracy") else "",
             "평균BER_fair": round(float(np.mean(numeric("ber_fair"))), 4) if numeric("ber_fair") else "",
             "성공률(%)": round(float(np.mean(numeric("success"))) * 100, 1) if numeric("success") else "",
+            "정확복원률(%)": round(float(np.mean(numeric("exact_match"))) * 100, 1) if numeric("exact_match") else "",
             "평균NC": round(float(np.mean(numeric("NC"))), 4) if numeric("NC") else "",
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(numeric("SI-SNR(dB)"))), 2) if numeric("SI-SNR(dB)") else "",

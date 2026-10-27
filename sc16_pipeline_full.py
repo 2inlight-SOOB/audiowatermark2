@@ -675,6 +675,8 @@ def build_row(rel_name, stage, orig16k, attacked_audio, model, sr, desync,
     _ber_valid = not np.isnan(ber)
     ber_fair = float(ber) if (detect_fail == 0 and _ber_valid) else 0.5
     success = 1 if (detect_fail == 0 and _ber_valid and ber <= BER_SUCCESS_THRESHOLD) else 0
+    # 리뷰 반영: BER=0 완전복원 (페이로드 비트수가 4종이 달라 BER<=0.1 허용오류 개수가 다른 문제 보완용 보조 기준)
+    exact_match = 1 if (_ber_valid and ber == 0.0) else 0
 
     ref_q = quality_ref if quality_ref is not None else orig16k
     deg_q = quality_deg if quality_deg is not None else attacked_audio
@@ -705,6 +707,7 @@ def build_row(rel_name, stage, orig16k, attacked_audio, model, sr, desync,
         "detect_fail": detect_fail,
         "ber_fair": round(ber_fair, 4),
         "success": success,
+        "exact_match": exact_match,
         "DSR": dsr,
         "confidence": round(confidence, 4),
         "SI-SNR(dB)": round(sisnr, 2) if sisnr is not None else "",
@@ -779,7 +782,7 @@ def main():
     print(f"공격 단계: {[a['name'] for a in attacks]}")
     print("=" * 60)
 
-    fieldnames = ["file", "stage", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "DSR", "confidence", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
+    fieldnames = ["file", "stage", "BER", "NC", "ber_raw", "detect_fail", "ber_fair", "success", "exact_match", "DSR", "confidence", "SI-SNR(dB)", "ViSQOL", "PESQ", "ODG",
                   "PLV", "PhaseDiff_rad", "GroupDelayMAE", "SpectralFlatness",
                   "SpectralCentroid_Hz", "EffectiveBandwidth99_Hz", "SilenceRatio", "CrestFactor"]
     csv_path = RESULT_DIR / "pipeline_full_results.csv"
@@ -925,6 +928,7 @@ def main():
             "평균BER": round(float(np.mean(numeric("BER"))), 4) if numeric("BER") else "",
             "평균BER_fair": round(float(np.mean(numeric("ber_fair"))), 4) if numeric("ber_fair") else "",
             "성공률(%)": round(float(np.mean(numeric("success"))) * 100, 1) if numeric("success") else "",
+            "정확복원률(%)": round(float(np.mean(numeric("exact_match"))) * 100, 1) if numeric("exact_match") else "",
             "평균NC": round(float(np.mean(numeric("NC"))), 4) if numeric("NC") else "",
             "DSR(%)": round(dsr_rate * 100, 1),
             "평균SI-SNR(dB)": round(float(np.mean(numeric("SI-SNR(dB)"))), 2) if numeric("SI-SNR(dB)") else "",

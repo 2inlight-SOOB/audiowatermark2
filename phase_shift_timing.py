@@ -22,6 +22,12 @@ SilentCipher 디코딩에서 phase_shift_decoding=False vs True 의 '디코딩 �
 서버(torch==2.0.0 + silentcipher)에서 실행할 것.
 """
 
+import os
+
+# GPU 0~2번만 사용 (서버의 3번 이상 GPU는 건드리지 않음).
+# torch/silentcipher import 전에 설정해야 적용된다. --device cuda 이면 cuda:0 = 물리 GPU 0.
+os.environ["CUDA_VISIBLE_DEVICES"] = "0,1,2"
+
 import argparse
 import time
 from pathlib import Path
@@ -93,8 +99,8 @@ def main():
     ap.add_argument("--n", type=int, default=5, help="모델별 측정 파일 수")
     ap.add_argument("--repeat", type=int, default=3, help="파일당 디코딩 반복 횟수(평균)")
     ap.add_argument("--device", default="cpu", help="cpu 또는 cuda")
-    ap.add_argument("--total-files", type=int, default=150,
-                    help="전체 재실행 시 모델당 처리할 파일 수 (데이터 확정 후 실제 값으로)")
+    ap.add_argument("--total-files", type=int, default=250,
+                    help="전체 재실행 시 모델당 처리할 파일 수 (데이터 확정: 5장르 x 50 = 250)")
     ap.add_argument("--decodes-per-file", type=int, default=15,
                     help="파일당 디코딩 횟수 = 공격 조건 수 + NoAttack (현재 pipeline_full 기준 약 15)")
     ap.add_argument("--dir16", default=None, help="SC-16 임베딩 WAV 폴더 (기본: AUDIO_ROOT/sc16_embed)")
